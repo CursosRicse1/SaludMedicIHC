@@ -25,7 +25,7 @@ export default function Layout() {
     };
 
     return (
-        <div className="h-screen">
+        <div>
              <Navbar abrirCerrar = {toggleOpen}/>
              {isAbrir &&  <DropDown abriCerrarEvents={toggleOpen}/> }
             
