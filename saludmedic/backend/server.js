@@ -2,7 +2,7 @@ import express  from "express";
 import data from './data.js';
 const app = express();
 app.get('/' , (req, res) => {
-    res.send('El servidor esta operando')
+    res.send('El servidor esta operando v2')
 });
 const port = process.env.PORT || 5000; 
 
