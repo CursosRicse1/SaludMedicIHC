@@ -14,6 +14,7 @@ export default function Navbar({abrirCerrar}) {
                     <Link to="/Noticias" className="px-4">Noticias</Link>
                     <Link to ="/Informacion" className="px-4">Informacion</Link>
                     <Link to = "/Login" className="px-4">Login</Link>
+                    <Link to ="/registrar" className="px-4">registrar</Link>
                 </div>
             </nav>
         </div>

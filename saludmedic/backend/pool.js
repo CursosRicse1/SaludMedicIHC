@@ -1,6 +1,6 @@
-import mysql from 'mysql';
+/*import mysql from 'mysql';
 import util from 'util';
-const pool = mysql.createPool({
+ const pool = mysql.createPool({
     connectionLimit : 10,
     host :"34.127.116.145" ,
     user:"user" , 
@@ -13,8 +13,11 @@ pool.getConnection((err , connection) =>{
         console.log("Hubo un error en la conexcion");
     if(connection){
         console.log("conexion exitosa");
-        connection.release();}
+        connection.release();
+    }
     return;
 });
 
-pool.query = util.promisify(pool.query)
+//queries
+
+export default pool;*/

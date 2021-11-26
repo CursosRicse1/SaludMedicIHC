@@ -21,7 +21,7 @@ function App() {
         <Routes>
         <Route path="/" element={<HomeScreen/>}></Route>
         <Route path="/login" element={<SigninScreen/>}></Route>
-        <Route path="/login" element={<RegisterScreen/>}></Route>
+        <Route path="/registrar" element={<RegisterScreen/>}></Route>
         </Routes>
         </main> 
     
