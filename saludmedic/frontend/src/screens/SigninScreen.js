@@ -9,8 +9,6 @@ export default function SigninScreen() {
 
   const login = () =>{
 
-
-
     Axios.post("http://localhost:5000/session", {
       apellido: apellidoSig,
       codigo: codigoSig,
