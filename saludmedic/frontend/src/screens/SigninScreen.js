@@ -1,20 +1,23 @@
-import { Axios } from "axios";
-
 import React, { useState } from "react";
+import Axios from "axios";
 import { Link } from "react-router-dom";
 
 export default function SigninScreen() {
   const [apellidoSig, setApellidoSig] = useState("");
   const [codigoSig, setCodigoSig] = useState("");
+  
+
+  const login = () =>{
 
 
-  const login =() =>{
-      Axios.post("http://localhost:5000/login", {
-          apellido : apellidoSig,
-          codigo : codigoSig,
-      }).then((response) => {
-          console.log(response);
-      });
+
+    Axios.post("http://localhost:5000/session", {
+      apellido: apellidoSig,
+      codigo: codigoSig,
+    }).then((response) => {
+        
+        console.log(response);
+    });
   };
   return (
     <div>

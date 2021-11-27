@@ -1,5 +1,5 @@
 import express from "express";
-import data from "./data.js";
+
 import cors from "cors";
 import mysql from "mysql";
 import morgan from "morgan";
@@ -9,16 +9,12 @@ const app = express();
 
 app.use(express.json());
 
-//mildware
-app.use(morgan("dev"));
-app.use(bodyParser.json());
-app.use(cors());
-
-//conexion mysql
 const pool = mysql.createPool({
   connectionLimit: 10,
   host: "34.127.116.145",
   user: "user",
+  password: "prueba",
+  password: "prueba",
   password: "prueba",
   port: 3306,
   database: "SaludMedic",
@@ -31,6 +27,11 @@ pool.getConnection((err, connection) => {
   }
   return;
 });
+
+//mildware
+app.use(morgan("dev"));
+app.use(bodyParser.json());
+app.use(cors());
 
 //routes
 app.get("/", (req, res) => {
@@ -49,21 +50,21 @@ app.post("/register", (req, res) => {
   );
 });
 
-app.post("/login", (req, res) => {
+app.post("/session", (req, res) => {
   const apellido = req.body.apellido;
   const codigo = req.body.codigo;
   pool.query(
-    "SELECT * FROM prueba apellido = ? AND codigo = ?",
+    "SELECT * FROM prueba  WHERE apellido = ? AND codigo = ?",
     [apellido, codigo],
     (err, result) => {
       if (err) {
         res.send({ err: err });
+      }
+
+      if (result.length>0) {
+        res.send(result);
       } else {
-        if (result) {
-          res.send(result);
-        } else {
-          res.send({ message: "Surgio un error con el apellido o el codigo" });
-        }
+        res.send({ message: "Surgio un error con el apellido o el codigo" });
       }
     }
   );
@@ -74,15 +75,4 @@ const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
   console.log(`Servid en http://localhost:${port}`);
-});
-app.get("/api/users", (req, res) => {
-  res.send(data.usuarios);
-});
-
-//prueba de conexion
-pool.query("select * from prueba", (err, rows) => {
-  if (err) throw err;
-  app.get("/tabla", (req, res) => {
-    res.send(rows);
-  });
 });
