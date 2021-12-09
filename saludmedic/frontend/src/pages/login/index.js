@@ -7,14 +7,13 @@ export default function SigninScreen() {
   const [apellidoSig, setApellidoSig] = useState("");
   const [codigoSig, setCodigoSig] = useState("");
 
-
-  const login =() =>{
-      Axios.post("http://localhost:5000/login", {
-          apellido : apellidoSig,
-          codigo : codigoSig,
-      }).then((response) => {
-          console.log(response);
-      });
+  const login = () => {
+    Axios.post("http://localhost:5000/login", {
+      apellido: apellidoSig,
+      codigo: codigoSig,
+    }).then((response) => {
+      console.log(response);
+    });
   };
   return (
     <div>
@@ -36,9 +35,10 @@ export default function SigninScreen() {
         }}
       ></input>
       <div>
-      <button className="block border-2 bg-blue-400 " onClick = {login}>Iniciar session</button>
+        <button className="block border-2 bg-blue-400 " onClick={login}>
+          Iniciar session
+        </button>
       </div>
- 
 
       <div>
         Si no tienes una cuenta
