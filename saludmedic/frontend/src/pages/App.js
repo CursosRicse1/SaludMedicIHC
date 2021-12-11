@@ -1,11 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
-import Layout from "../components/Layout";
 import LandingLayout from "components/Layout/LandingLayout";
 
 import HomeScreen from ".";
-import RegisterScreen from "./register";
-import SigninScreen from "./login";
+import RegisterScreen from "pages/register";
+import SigninScreen from "pages/login";
 
 function App() {
   return (
@@ -15,13 +13,11 @@ function App() {
         <LandingLayout />
       </header>
 
-      <main>
-        <Routes>
-          <Route path="/" element={<HomeScreen />} />
-          <Route path="/login" element={<SigninScreen />} />
-          <Route path="/register" element={<RegisterScreen />} />
-        </Routes>
-      </main>
+      <Routes>
+        <Route path="/" element={<HomeScreen />} />
+        <Route path="/login" element={<SigninScreen />} />
+        <Route path="/register" element={<RegisterScreen />} />
+      </Routes>
     </BrowserRouter>
   );
 }
