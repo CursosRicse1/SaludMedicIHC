@@ -1,25 +1,19 @@
-import React, { useState } from "react";
 import Axios from "axios";
 import { Link } from "react-router-dom";
 import TextInput from "components/TextInput";
 import NavButton from "components/Buttons/NavButton";
 import Logo from "components/icons/Logo";
 import { BgImage } from "pages/login";
+import { useForm } from "react-hook-form";
 
 export default function RegisterScreen() {
-  const [DNIReg, setDNIReg] = useState("");
-  const [codigoReg, setCodigoReg] = useState("");
-  const [ContraseñaReg, setContraseñaReg] = useState("");
-  const register = () => {
-  
-      Axios.post("http://localhost:5000/auth/register", {
-        codigo: codigoReg,  
-        DNI: DNIReg,
-        contraseña : ContraseñaReg ,
-      }).then((response) => {
-        console.log(response);
-      });
-    
+  const { register, handleSubmit } = useForm();
+
+  const registerForm = (data) => {
+    console.log(data);
+    Axios.post("http://localhost:5000/auth/register", data).then((response) => {
+      console.log(response);
+    });
   };
 
   return (
@@ -31,29 +25,40 @@ export default function RegisterScreen() {
       }}
     >
       <div className="flex justify-center items-center bg-gray-300 bg-opacity-40 backdrop-filter backdrop-blur-md w-full h-full">
-        <div className="flex flex-col w-[80%] sm:w-[70%] md:w-[50%] lg:w-[45%] xl:w-[30%] h-[68%] 2xl:h-[58%] justify-center rounded-lg bg-white shadow-2xl text-sm sm:text-base p-5 sm:p-8 md:p-10 lg:p-9 xl:p-14">
+        <form
+          onSubmit={handleSubmit(registerForm)}
+          className="flex flex-col w-[80%] sm:w-[70%] md:w-[50%] lg:w-[45%] xl:w-[30%] h-[68%] 2xl:h-[58%] justify-center rounded-lg bg-white shadow-2xl text-sm sm:text-base p-5 sm:p-8 md:p-10 lg:p-9 xl:p-14"
+        >
           <div className="flex justify-center mb-4 sm:mb-3 md:mb-8">
             <Logo className="w-14 h-14" />
           </div>
           <div className="flex flex-row justify-between">
             <div className="flex flex-col w-[45%]">
               <TextInput
+                name="codigo"
                 label="Código del seguro"
                 className="mb-3"
-                register={() => null } onChange={(e) =>{ setCodigoReg(e.target.value)}}
+                register={register}
               />
             </div>
             <div className="flex flex-col w-[45%]">
-              <TextInput label="DNI" className="mb-3" register={() => null} onChange={(e) =>{ setDNIReg(e.target.value)}}/>
+              <TextInput
+                name="DNI"
+                label="DNI"
+                className="mb-3"
+                register={register}
+              />
             </div>
           </div>
           <TextInput
+            name="contrasena"
             label="Contraseña"
             className="mb-3"
-            register={() => null}
-            onChange={(e) =>{ setContraseñaReg(e.target.value)}}
+            register={register}
           />
-          <NavButton onClick={register} variant="primary">Registrarse</NavButton>
+          <NavButton type="submit" variant="primary">
+            Registrarse
+          </NavButton>
           <div className="border-solid border-t mt-5 pt-3 text-gray-400 font-normal text-center">
             <span>Si ya tienes una cuenta,{` `}</span>
             <Link to="/login">
@@ -63,7 +68,7 @@ export default function RegisterScreen() {
             </Link>
             <span>.</span>
           </div>
-        </div>
+        </form>
       </div>
     </main>
   );
