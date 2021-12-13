@@ -3,24 +3,23 @@ import Axios from "axios";
 import { Link } from "react-router-dom";
 import TextInput from "components/TextInput";
 import NavButton from "components/Buttons/NavButton";
-import Logo from "components/Icons/Logo";
+import Logo from "components/icons/Logo";
 import { BgImage } from "pages/login";
 
 export default function RegisterScreen() {
-  const [apellidoReg, setApellidoReg] = useState("");
+  const [DNIReg, setDNIReg] = useState("");
   const [codigoReg, setCodigoReg] = useState("");
-
+  const [ContraseñaReg, setContraseñaReg] = useState("");
   const register = () => {
-    if (apellidoReg.length === 0 || codigoReg.length === 0) {
-      window.alert("No se lleno los campos ");
-    } else {
-      Axios.post("http://localhost:5000/register", {
-        apellido: apellidoReg,
-        codigo: codigoReg,
+  
+      Axios.post("http://localhost:5000/auth/register", {
+        codigo: codigoReg,  
+        DNI: DNIReg,
+        contraseña : ContraseñaReg ,
       }).then((response) => {
         console.log(response);
       });
-    }
+    
   };
 
   return (
@@ -41,19 +40,20 @@ export default function RegisterScreen() {
               <TextInput
                 label="Código del seguro"
                 className="mb-3"
-                register={() => null}
+                register={() => null } onChange={(e) =>{ setCodigoReg(e.target.value)}}
               />
             </div>
             <div className="flex flex-col w-[45%]">
-              <TextInput label="DNI" className="mb-3" register={() => null} />
+              <TextInput label="DNI" className="mb-3" register={() => null} onChange={(e) =>{ setDNIReg(e.target.value)}}/>
             </div>
           </div>
           <TextInput
             label="Contraseña"
             className="mb-3"
-            register={() => null}
+            register={(e) => {setContraseñaReg(e.target.value)}}
+            onChange={(e) =>{ setContraseñaReg(e.target.value)}}
           />
-          <NavButton variant="primary">Registrarse</NavButton>
+          <NavButton onClick={register} variant="primary">Registrarse</NavButton>
           <div className="border-solid border-t mt-5 pt-3 text-gray-400 font-normal text-center">
             <span>Si ya tienes una cuenta,{` `}</span>
             <Link to="/login">
@@ -82,7 +82,6 @@ export default function RegisterScreen() {
       setCodigoReg(e.target.value);
     }}
   />
-
   <button className="block border-2" onClick={register}>
     <Link to="/login">Registrar</Link>
   </button> */

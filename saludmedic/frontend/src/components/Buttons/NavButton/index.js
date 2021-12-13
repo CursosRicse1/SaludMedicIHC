@@ -15,7 +15,7 @@ export default function NavButton({
   };
 
   return (
-    <button
+    <button 
       {...props}
       onClick={onClick}
       className={`${types[variant]} font-bold rounded-md px-9 py-2 transition duration-500 color-transition hover:bg-green-600 hover:shadow-lg ${className}`}

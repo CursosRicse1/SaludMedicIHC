@@ -1,12 +1,12 @@
-import Menu from "components/Icons/Menu";
-import Close from "components/Icons/Close";
+import Menu from "components/icons/Menu";
+import Close from "components/icons/Close";
 import DropDown from "components/Dropdown/MenuDropdown";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import Info from "components/Icons/Info";
-import News from "components/Icons/News";
-import UserIcon from "components/Icons/User";
-import Logo from "components/Icons/Logo";
+import Info from "components/icons/Info";
+import News from "components/icons/News";
+import UserIcon from "components/icons/User";
+import Logo from "components/icons/Logo";
 
 export default function LandingLayout() {
   const variants = {

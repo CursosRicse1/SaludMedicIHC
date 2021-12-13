@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import TextInput from "components/TextInput";
 import NavButton from "components/Buttons/NavButton";
-import Logo from "components/Icons/Logo";
+import Logo from "components/icons/Logo";
 export const BgImage =
   "https://static.wixstatic.com/media/273aed_8e7a3dfed47f4765ae5deeab1a8dd1df~mv2.jpg/v1/fill/w_1920,h_1080,al_c/273aed_8e7a3dfed47f4765ae5deeab1a8dd1df~mv2.jpg";
 
