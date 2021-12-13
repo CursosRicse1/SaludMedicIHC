@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "user",
+    "password": "prueba",
+    "database": "SaludMedic",
+    "host": "34.127.116.145",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "user",
+    "password": "prueba",
+    "database": "SaludMedic",
+    "host": "34.127.116.145",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "user",
+    "password": "prueba",
+    "database": "SaludMedic",
+    "host": "34.127.116.145",
+    "dialect": "mysql"
+  }
+}
