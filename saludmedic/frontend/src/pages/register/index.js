@@ -50,7 +50,7 @@ export default function RegisterScreen() {
           <TextInput
             label="Contraseña"
             className="mb-3"
-            register={(e) => {setContraseñaReg(e.target.value)}}
+            register={() => null}
             onChange={(e) =>{ setContraseñaReg(e.target.value)}}
           />
           <NavButton onClick={register} variant="primary">Registrarse</NavButton>
