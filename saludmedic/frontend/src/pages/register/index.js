@@ -1,4 +1,5 @@
 import Axios from "axios";
+
 import { Link } from "react-router-dom";
 import TextInput from "components/TextInput";
 import NavButton from "components/Buttons/NavButton";
@@ -7,11 +8,15 @@ import { BgImage } from "pages/login";
 import { useForm } from "react-hook-form";
 
 export default function RegisterScreen() {
-  const { register, handleSubmit } = useForm();
-
+  const { register, handleSubmit } = useForm(); 
   const registerForm = (data) => {
-    console.log(data);
-    Axios.post("http://localhost:5000/auth/register", data).then((response) => {
+    
+    Axios.post("http://localhost:5000/auth",{
+      codigo : data.codigo,
+      dni : data.dni , 
+      password : data.password
+
+    }).then((response) => {
       console.log(response);
     });
   };
@@ -43,7 +48,7 @@ export default function RegisterScreen() {
             </div>
             <div className="flex flex-col w-[45%]">
               <TextInput
-                name="DNI"
+                name="dni"
                 label="DNI"
                 className="mb-3"
                 register={register}
@@ -51,10 +56,10 @@ export default function RegisterScreen() {
             </div>
           </div>
           <TextInput
-            name="contrasena"
+            name="password"
             label="Contraseña"
             className="mb-3"
-            register={register}
+             register={register}
           />
           <NavButton type="submit" variant="primary">
             Registrarse

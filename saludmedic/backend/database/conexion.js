@@ -17,5 +17,5 @@ db.connect(function(error){
        console.log('Conexion correcta.');
     }
  });
-db.end()
+
 module.exports = db ; 

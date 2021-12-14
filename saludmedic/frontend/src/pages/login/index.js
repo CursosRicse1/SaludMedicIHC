@@ -1,6 +1,4 @@
-import { Axios } from "axios";
-
-import React, { useState } from "react";
+import  Axios  from "axios";
 import { Link } from "react-router-dom";
 import TextInput from "components/TextInput";
 import NavButton from "components/Buttons/NavButton";
@@ -10,19 +8,20 @@ export const BgImage =
   "https://static.wixstatic.com/media/273aed_8e7a3dfed47f4765ae5deeab1a8dd1df~mv2.jpg/v1/fill/w_1920,h_1080,al_c/273aed_8e7a3dfed47f4765ae5deeab1a8dd1df~mv2.jpg";
 
 export default function SigninScreen() {
-  const [apellidoSig, setApellidoSig] = useState("");
-  const [codigoSig, setCodigoSig] = useState("");
 
   const { register, handleSubmit } = useForm();
 
-  const login = () => {
-    Axios.post("http://localhost:5000/login", {
-      apellido: apellidoSig,
-      codigo: codigoSig,
+  const login = (data) => {
+    Axios.post("http://localhost:5000/auth/login",{
+      codigo : data.codigo,
+      
+      password : data.password
+
     }).then((response) => {
       console.log(response);
     });
-  };
+  
+  }
   return (
     <main
       className="h-almost-screen flex justify-center items-center bg-gray-700"
@@ -46,7 +45,7 @@ export default function SigninScreen() {
             register={register}
           />
           <TextInput
-            name="contrasena"
+            name="password"
             label="Contraseña"
             className="mb-3"
             register={register}
@@ -66,25 +65,3 @@ export default function SigninScreen() {
     </main>
   );
 }
-/* <div>Iniciar sesión</div>
-  <label>Apellido</label>
-  <input
-    type="text"
-    placeholder="Apellido"
-    onChange={(e) => {
-      setApellidoSig(e.target.value);
-    }}
-  ></input>
-  <label>Codigo</label>
-  <input
-    type="text"
-    placeholder="Codigo del usuario"
-    onChange={(e) => {
-      setCodigoSig(e.target.value);
-    }}
-  ></input>
-  <div>
-    <button className="border-2 bg-blue-400 " onClick={login}>
-      Iniciar session
-    </button>
-  </div> */
