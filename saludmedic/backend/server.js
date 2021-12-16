@@ -10,7 +10,7 @@ const req = require('express/lib/request');
 const bcrypt = require('bcrypt');
 const res = require("express/lib/response");
 
-//Routerss
+//Routersss
 
 app.use(express.json())
 app.use(cors({
