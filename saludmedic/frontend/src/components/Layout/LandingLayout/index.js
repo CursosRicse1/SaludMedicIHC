@@ -44,6 +44,7 @@ export default function LandingLayout() {
                 <UserIcon className="w-8 h-8" />
               </li>
             </Link>
+            
             {/* <Link to="/login">
               <li className={variants["primary"]}>Iniciar sesión</li>
             </Link>

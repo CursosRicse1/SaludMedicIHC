@@ -10,6 +10,7 @@ const db = mysql.createConnection({
     database: "SaludMedic",
 
 })
+
 db.connect(function(error){
     if(error){
        throw error;

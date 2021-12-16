@@ -1,5 +1,6 @@
 import  Axios  from "axios";
-import { Link } from "react-router-dom";
+
+import  { Link } from "react-router-dom";
 import TextInput from "components/TextInput";
 import NavButton from "components/Buttons/NavButton";
 import Logo from "components/icons/Logo";
@@ -10,7 +11,7 @@ export const BgImage =
 export default function SigninScreen() {
 
   const { register, handleSubmit } = useForm();
-
+  
   const login = (data) => {
     Axios.post("http://localhost:5000/auth/login",{
       codigo : data.codigo,
@@ -18,6 +19,7 @@ export default function SigninScreen() {
       password : data.password
 
     }).then((response) => {
+     
       console.log(response);
     });
   
@@ -61,6 +63,7 @@ export default function SigninScreen() {
             <span>.</span>
           </div>
         </form>
+  
       </div>
     </main>
   );
