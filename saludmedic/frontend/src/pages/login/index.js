@@ -1,5 +1,5 @@
 import  Axios  from "axios";
-
+import React, { useEffect } from 'react';
 import  { Link } from "react-router-dom";
 import TextInput from "components/TextInput";
 import NavButton from "components/Buttons/NavButton";
@@ -11,7 +11,7 @@ export const BgImage =
 export default function SigninScreen() {
 
   const { register, handleSubmit } = useForm();
-  
+  Axios.defaults.withCredentials = true;
   const login = (data) => {
     Axios.post("http://localhost:5000/auth/login",{
       codigo : data.codigo,
@@ -24,6 +24,11 @@ export default function SigninScreen() {
     });
   
   }
+  useEffect(() => {
+    Axios.get("http://localhost:5000/auth/login").then((response)=> {
+       console.log(response)
+    })
+  }, [])
   return (
     <main
       className="h-almost-screen flex justify-center items-center bg-gray-700"

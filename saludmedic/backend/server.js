@@ -7,37 +7,82 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser')
 const req = require('express/lib/request');
-
+const bcrypt = require('bcrypt');
+const res = require("express/lib/response");
 
 //Routerss
-/*
-const postRouter = require('./routes/Posts');
 
-app.use(session({
-  key : "userId" ,
-  secret : "UNMSM" , 
-  resave : false , 
-  saveUninitialized : false,
-  cookie : {
-    expires : 60*60*3  , 
-  }
-}))
-//midleware
-
-app.use("/posts", postRouter);
-
+app.use(express.json())
 app.use(cors({
-  origin : ["http://localhost:300/auth/login"] ,
-  methods : ["GET" , "POST"] , 
+  origin : ["http://localhost:3000"] , 
+  methods : ["GET" , "POST"],
   credentials : true
 }));
 
-app.use(cookieParser());
-app.use(bodyParser.urlencoded({extended : true}));
 
-*/
-app.use(express.json())
-app.use(cors())
+app.use(cookieParser())
+app.use(bodyParser.urlencoded({extended : true}))
+
+app.use(session({
+ 
+  key : "userId" , 
+  secret :"unmsm" , 
+  resave : false , 
+  saveUninitialized : false,
+  cookie : {
+    expires : 60*60*24 , 
+  } , 
+}))
+
+
+app.get("/auth/login" , (req , res ) => {
+  if (req.session.user) {
+    res.send({ loggedIn: true, user: req.session.user });
+  } else {
+    res.send({ loggedIn: false });
+  }
+})
+
+
+//LOGING
+app.post("/auth/login" , (req ,res ) => {
+  let reqBody = req.body;
+  const codigo = reqBody.codigo;
+  const password = reqBody.password;
+  
+  db.query(
+    "SELECT * FROM prueba WHERE  codigo = ?",
+    codigo , 
+    (err ,result ) => {
+      if (err ){
+        res.send({err : err})
+      }
+      var dato = []
+       dato  = result[0].password;
+      
+      if (dato.length > 0) {
+        bcrypt.compare(password , result[0].password , (error , response )=>{ 
+          
+          if( response) {
+
+            
+            req.session.user = result;
+            console.log(req.session.user);
+            
+            res.send(result);
+            console.log("usuario ingreso correctamente")
+          }else{
+            res.send({ message : "Combiancion incorrecta"});
+          }
+        })
+
+      }else {
+        res.send({ message : "Usuario inexistente"});
+      }
+    }
+  );
+});
+
 
 app.use("/auth" , UserRouter );
 app.listen(5000 , () =>{

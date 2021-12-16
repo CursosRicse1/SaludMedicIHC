@@ -38,38 +38,6 @@ router.post("/", (req, res) => {
   });
 });
 
-//LOGING
-router.post("/login" , (req ,res ) => {
-  let reqBody = req.body;
-  const codigo = reqBody.codigo;
-  const password = reqBody.password;
-
-  db.query(
-    "SELECT * FROM prueba WHERE  codigo = ?",
-    codigo , 
-    (err ,result ) => {
-      if (err ){
-        res.send({err : err})
-      }
-      var dato = []
-       dato  = result[0].password;
-      if (dato.length > 0) {
-        bcrypt.compare(password , result[0].password , (error , response )=>{ 
-          
-          if( response) {
-            res.send(result);
-            console.log("usuario ingreso correctamente")
-          }else{
-            res.send({ message : "Combiancion incorrecta"});
-          }
-        })
-
-      }else {
-        res.send({ message : "Usuario inexistente"});
-      }
-    }
-  );
-});
 //RUTA USUARIO AUTH 
 router.get("/", (req, res) => {
   res.send("servidor de usuarios operativo");
