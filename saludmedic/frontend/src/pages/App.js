@@ -18,7 +18,7 @@ function App() {
         <Route path="/" element={<HomeScreen />} />
         <Route path="/login" element={<SigninScreen />} />
         <Route path="/register" element={<RegisterScreen />} />
-        <Route path = "/asegurado  " element ={<AseguradoScreen/>}/>
+        <Route path="/asegurado" element={<AseguradoScreen />} />
       </Routes>
     </BrowserRouter>
   );
