@@ -4,7 +4,8 @@ import LandingLayout from "components/Layout/LandingLayout";
 import HomeScreen from ".";
 import RegisterScreen from "pages/register";
 import SigninScreen from "pages/login";
-import AseguradoScreen from "./asegurado";
+import MainScreen from "pages/main";
+import ErrorScreen from "./error";
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
         <Route path="/" element={<HomeScreen />} />
         <Route path="/login" element={<SigninScreen />} />
         <Route path="/register" element={<RegisterScreen />} />
-        <Route path = "/asegurado  " element ={<AseguradoScreen/>}/>
+        <Route path = "/main" element ={<MainScreen/>}/>
+        <Route path = "*"  element={<ErrorScreen/>}/>
       </Routes>
     </BrowserRouter>
   );

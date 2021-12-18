@@ -1,16 +1,19 @@
 import Axios from "axios";
-
-import { Link } from "react-router-dom";
+import { Link  , useNavigate} from "react-router-dom";
 import TextInput from "components/TextInput";
 import NavButton from "components/Buttons/NavButton";
 import Logo from "components/icons/Logo";
 import { BgImage } from "pages/login";
 import { useForm } from "react-hook-form";
 
+
 export default function RegisterScreen() {
+  let navigate = useNavigate();
+  
+
   const { register, handleSubmit } = useForm(); 
   const registerForm = (data) => {
-    
+    navigate('/login')
     Axios.post("http://localhost:5000/auth",{
       codigo : data.codigo,
       dni : data.dni , 
