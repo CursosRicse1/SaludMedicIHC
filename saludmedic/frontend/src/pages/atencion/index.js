@@ -7,7 +7,7 @@ import "react-calendar/dist/Calendar.css";
 
 export default function Atencion() {
   return (
-    <main className="flex flex-col items-center justify-start pt-[8%] overflow-y-auto h-almost-screen">
+    <main className="flex flex-col items-center justify-center h-almost-screen">
       <div className="w-11/12 md:w-4/6 lg:w-5/6 xl:w-7/12">
         <div className="flex flex-row items-center justify-start w-full mb-6 border-b-2 pb-2">
           <i>
@@ -15,8 +15,12 @@ export default function Atencion() {
           </i>
           <h1 className="pl-2 text-xl font-semibold text-left">Atención</h1>
         </div>
-        <div className="grid grid-cols-2 gap-11">
-          <form className="px-7">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-11 overflow-y-auto h-[90%] px-4">
+          <div className="flex flex-col items-center">
+            <span className="text-gray-500 font-semibold pb-2">Calendario</span>
+            <Calendar />
+          </div>
+          <form className="px-0 sm:px-20 md:px-16 lg:px-7">
             <div className="flex flex-col">
               <Select
                 variant="primary"
@@ -43,7 +47,7 @@ export default function Atencion() {
                 register={() => null}
               />
             </div>
-            <div className="w-full flex flex-row justify-center space-x-6 mt-3">
+            <div className="w-full flex flex-row justify-center space-x-6 py-3 ">
               <Button variant="primary" register={() => null}>
                 Reservar
               </Button>
@@ -52,10 +56,6 @@ export default function Atencion() {
               </Button>
             </div>
           </form>
-          <div>
-            <span>Calendario</span>
-            <Calendar />
-          </div>
         </div>
       </div>
     </main>

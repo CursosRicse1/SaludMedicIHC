@@ -2,7 +2,7 @@ import React from "react";
 
 const theme = {
   primary:
-    "w-full border-b-2 rounded-lg mb-4 py-2 px-3 text-base border-solid border border-gray-400 border-opacity-60 bg-gray-50 py-1 outline-none font-base transition duration-500 hover:shadow-md cursor-pointer",
+    "w-full border-b-2 rounded-lg mb-4 py-2 px-3 text-base border-solid border border-gray-400 border-opacity-60 bg-gray-50 outline-none font-base transition duration-500 hover:shadow-md cursor-pointer",
   inactive:
     "border-solid border border-gray-400 border-opacity-60 bg-gray-50 rounded-lg py-2 px-3 outline-none font-normal",
 };
