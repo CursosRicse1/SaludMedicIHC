@@ -40,7 +40,8 @@ export default function AseguradoScreen() {
             <TextInput
               name="Fec nacimiento"
               label="Fec nacimiento"
-              className=""
+              className="opacity-60"
+              type="date"
               register={register}
             />
           </div>
