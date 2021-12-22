@@ -6,8 +6,10 @@ export default function NavButton({
   ...props
 }) {
   const types = {
-    primary: "text-white bg-[#32CCA7]",
-    secondary: "bg-gray-900 text-gray-50",
+    primary:
+      "text-white bg-[#32CCA7] border-2 border-[#32CCA7] transition duration-500 color-transition hover:bg-green-400 hover:shadow-lg",
+    secondary:
+      "text-gray-500 bg-white border-2 border-[#32CCA7] transition duration-500 color-transition hover:bg-gray-100 hover:shadow-lg",
     quaternary:
       "text-gray-900 font-bold rounded-md border-solid border-2 border-gray-900 px-9 py-2 transition duration-500 ease-in-out hover:scale-[101%] hover:shadow-lg",
     quinary:
@@ -15,10 +17,10 @@ export default function NavButton({
   };
 
   return (
-    <button 
+    <button
       {...props}
       onClick={onClick}
-      className={`${types[variant]} font-bold rounded-md px-9 py-2 transition duration-500 color-transition hover:bg-green-600 hover:shadow-lg ${className}`}
+      className={`${types[variant]} font-bold rounded-md px-7 py-1  ${className}`}
     >
       <span className="flex flex-row items-center justify-center">
         {children}

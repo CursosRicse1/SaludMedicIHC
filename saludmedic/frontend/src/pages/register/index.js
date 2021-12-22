@@ -1,6 +1,5 @@
 import Axios from "axios";
-
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TextInput from "components/TextInput";
 import NavButton from "components/Buttons/NavButton";
 import Logo from "components/icons/Logo";
@@ -8,14 +7,15 @@ import { BgImage } from "pages/login";
 import { useForm } from "react-hook-form";
 
 export default function RegisterScreen() {
-  const { register, handleSubmit } = useForm(); 
-  const registerForm = (data) => {
-    
-    Axios.post("http://localhost:5000/auth",{
-      codigo : data.codigo,
-      dni : data.dni , 
-      password : data.password
+  let navigate = useNavigate();
 
+  const { register, handleSubmit } = useForm();
+  const registerForm = (data) => {
+    navigate("/login");
+    Axios.post("http://localhost:5000/auth", {
+      codigo: data.codigo,
+      dni: data.dni,
+      password: data.password,
     }).then((response) => {
       console.log(response);
     });
@@ -32,7 +32,7 @@ export default function RegisterScreen() {
       <div className="flex justify-center items-center bg-gray-300 bg-opacity-40 backdrop-filter backdrop-blur-md w-full h-full">
         <form
           onSubmit={handleSubmit(registerForm)}
-          className="flex flex-col w-[80%] sm:w-[70%] md:w-[50%] lg:w-[45%] xl:w-[30%] h-[68%] 2xl:h-[58%] justify-center rounded-lg bg-white shadow-2xl text-sm sm:text-base p-5 sm:p-8 md:p-10 lg:p-9 xl:p-14"
+          className="flex flex-col w-[80%] sm:w-[70%] md:w-[50%] lg:w-[45%] xl:w-[30%] h-auto justify-center rounded-lg bg-white shadow-2xl text-sm sm:text-base p-5 sm:p-8 md:p-10 lg:p-9 xl:p-14"
         >
           <div className="flex justify-center mb-4 sm:mb-3 md:mb-8">
             <Logo className="w-14 h-14" />
@@ -59,7 +59,7 @@ export default function RegisterScreen() {
             name="password"
             label="Contraseña"
             className="mb-3"
-             register={register}
+            register={register}
           />
           <NavButton type="submit" variant="primary">
             Registrarse
