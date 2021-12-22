@@ -10,6 +10,7 @@ import SigninScreen from "pages/login";
 import MainScreen from "pages/main";
 import AtencionScreen from "pages/atencion";
 import ErrorScreen from "./error";
+import DefuncionScreen from "./defuncion";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -41,6 +42,7 @@ function App() {
         <Route path="/register" element={<RegisterScreen />} />
         <Route path="/main" element={<MainScreen />} />
         <Route path="/atencion" element={<AtencionScreen />} />
+        <Route path="/main/defuncion" element={<DefuncionScreen/>}/>
         <Route path="*" element={<ErrorScreen />} />
       </Routes>
     </BrowserRouter>

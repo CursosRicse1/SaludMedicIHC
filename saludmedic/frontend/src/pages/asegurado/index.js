@@ -6,7 +6,7 @@ export default function AseguradoScreen() {
         <div>
            
             <h1>aseguradoScreen</h1>
-           
+         
         </div>
     )
 }

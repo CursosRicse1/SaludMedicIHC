@@ -1,13 +1,14 @@
 const express = require("express");
 const session = require("express-session");
 const app = express();
-const UserRouter = require("./routes/UserRouter.js");
-const db = require("./database/conexion");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-var cookieParser = require("cookie-parser");
-const req = require("express/lib/request");
-const bcrypt = require("bcrypt");
+const UserRouter = require('./routes/UserRouter.js')
+const difuntoRouter = require('./routes/doctor/difunto/difuntoRouter.js')
+const db = require('./database/conexion');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser')
+const req = require('express/lib/request');
+const bcrypt = require('bcrypt');
 const res = require("express/lib/response");
 
 //Routersss
@@ -77,12 +78,19 @@ app.post("/auth/login", (req, res) => {
 
 app.use("/auth", UserRouter);
 
-app.post("/logout", (req, res) => {
-  req.session.destroy((err) => {
+app.use("/auth" , UserRouter );
+app.use("/doctor",difuntoRouter)
+
+app.post('/logout' , (req  , res ) => {
+  req.session.destroy((err) =>{
     if (err) throw err;
-    res.redirect("/");
+    res.redirect("/")
+  })
+})
+
+app.listen(5000 , () =>{
+    console.log("Servidor corriendo en el puerto 5000");
   });
-});
 
 app.listen(5000, () => {
   console.log("Servidor corriendo en el puerto 5000");
