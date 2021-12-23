@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import LoadingBox from "components/LoadingBox";
 import MessageBox from "components/MessageBox";
+import RegisterCard from "components/Card/RegisterCard";
 
 export default function HomeScreen() {
   const [loading, setLoading] = useState(false);
@@ -25,6 +26,7 @@ export default function HomeScreen() {
         <div>
           HomeScreen
           <div className="bg-blue-600 px-5">ga</div>
+          <RegisterCard />
         </div>
       )}
     </div>
