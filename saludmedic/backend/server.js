@@ -76,7 +76,6 @@ app.post("/auth/login", (req, res) => {
   });
 });
 
-app.use("/auth", UserRouter);
 
 app.use("/auth" , UserRouter );
 app.use("/doctor",difuntoRouter)
@@ -92,9 +91,6 @@ app.listen(5000 , () =>{
     console.log("Servidor corriendo en el puerto 5000");
   });
 
-app.listen(5000, () => {
-  console.log("Servidor corriendo en el puerto 5000");
-});
 
 app.get("/", (req, res) => {
   res.send("Serivdor operando");

@@ -16,10 +16,15 @@ const Select = React.forwardRef(
       value,
       name,
       errors,
+    
       variant,
       disabled,
       onChange,
       onBlur,
+      register,   
+      type,
+      ...props
+    
     },
     ref
   ) => {
@@ -29,17 +34,22 @@ const Select = React.forwardRef(
           className="pb-2 font-medium text-gray-500"
           variant={variant}
           htmlFor={label}
+
         >
           {label}
+          
         </label>
         <select
           className={`${theme[variant]}`}
           disabled={disabled}
           onChange={onChange}
           onBlur={onBlur}
+          options = {options}
           ref={ref}
           name={name}
           value={value || undefined}
+          {...props}
+          {...register(name)}
         >
           <option hidden value="">
             Seleccione una opción
@@ -47,8 +57,11 @@ const Select = React.forwardRef(
           {options.map((option, index) => (
             <option key={index} value={option.value}>
               {option.label}
+            
             </option>
           ))}
+       
+       
         </select>
         {/* <p className="text-sm font-semibold text-red-500">
           {errors && errors?.message}

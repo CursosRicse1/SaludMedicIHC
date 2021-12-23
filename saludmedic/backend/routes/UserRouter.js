@@ -12,19 +12,22 @@ router.post("/", (req, res) => {
   const codigo = reqBody.codigo;
   const dni = reqBody.dni;
   const password = reqBody.password;
-
+  
   bcrypt.hash(password , saltRound , (err , hash ) => {
     
     if(err) {
       console.log(err)
+      console.log("error")
     }
 
     db.query(
-      "INSERT INTO prueba (codigo , dni , password) VALUES (? , ? , ?) ",
+      "INSERT INTO prueba (codigo , dni , password) VALUES (? , ? , ?) ;",
       [codigo, dni, hash],
       (err, result) => {
         if (err ){
+         
           res.send({err : err})
+          
         }
   
         if (result) {
