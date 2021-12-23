@@ -10,6 +10,7 @@ router.post("/difunto" , (req , res ) => {
     let reqBody = req.body;
     console.log(reqBody)
     const nombre = reqBody.nombre;
+    const codigo = reqBody.codigo;
     const dni = reqBody.dni;
     const fecha = reqBody.fecha;
     const hora = reqBody.hora;
@@ -23,6 +24,7 @@ router.post("/difunto" , (req , res ) => {
         }
         if(result){
             res.send(result);
+            db.query("delete from prueba where codigo = '"+codigo+"' ")
         }else{
             res.send({message : " difunto no registrado"})
         }

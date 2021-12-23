@@ -13,9 +13,11 @@ export default function DefuncionScreen() {
     console.log(data);
     Axios.post("http://localhost:5000/doctor/difunto" , {
       nombre: data.nombre , 
+      codigo : data.codigo,
       dni : data.dni , 
       fecha : data.fecha , 
       hora: data.hora ,
+      sexo : data.codigo,
       descripcion : data.descripcion, 
       
     }).then((response) => {
@@ -39,6 +41,14 @@ export default function DefuncionScreen() {
             <TextInput
               name="nombre"
               label="Nombre del paciente"
+              className="mb-1"
+              register={register}
+            />     
+          </div>
+          <div className="px-8 flex flex-col w-[100%] ">
+            <TextInput
+              name="codigo"
+              label="Codigo"
               className="mb-1"
               register={register}
             />     
