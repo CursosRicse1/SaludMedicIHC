@@ -1,6 +1,6 @@
-import  Axios  from "axios";
-import React, { useEffect } from 'react';
-import  { Link , useNavigate  } from "react-router-dom";
+import Axios from "axios";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import TextInput from "components/TextInput";
 import NavButton from "components/Buttons/NavButton";
 import Logo from "components/icons/Logo";
@@ -10,29 +10,25 @@ export const BgImage =
 
 export default function SigninScreen() {
   let navigate = useNavigate();
-  
+
   const { register, handleSubmit } = useForm();
   Axios.defaults.withCredentials = true;
   const login = (data) => {
+    navigate("/main");
 
-    navigate("/main")
-    
-    Axios.post("http://localhost:5000/auth/login",{
-      codigo : data.codigo,
-      
-      password : data.password
+    Axios.post("http://localhost:5000/auth/login", {
+      codigo: data.codigo,
 
+      password: data.password,
     }).then((response) => {
-     
       console.log(response);
     });
-  
-  }
+  };
   useEffect(() => {
-    Axios.get("http://localhost:5000/auth/login").then((response)=> {
-       console.log(response)
-    })
-  }, [])
+    Axios.get("http://localhost:5000/auth/login").then((response) => {
+      console.log(response);
+    });
+  }, []);
   return (
     <main
       className="h-almost-screen flex justify-center items-center bg-gray-700"
@@ -44,7 +40,7 @@ export default function SigninScreen() {
       <div className="flex justify-center items-center bg-gray-300 bg-opacity-40 backdrop-filter backdrop-blur-md w-full h-full">
         <form
           onSubmit={handleSubmit(login)}
-          className="flex flex-col w-[80%] sm:w-[70%] md:w-[50%] lg:w-[45%] xl:w-[30%] h-[58%] justify-center rounded-lg bg-white shadow-2xl text-sm sm:text-base p-5 sm:p-8 md:p-10 lg:p-9 xl:p-14"
+          className="flex flex-col w-[80%] sm:w-[70%] md:w-[50%] lg:w-[45%] xl:w-[30%] h-auto justify-center rounded-lg bg-white shadow-2xl text-sm sm:text-base p-5 sm:p-8 md:p-10 lg:p-9 xl:p-14"
         >
           <div className="flex justify-center mb-4 sm:mb-3 md:mb-8">
             <Logo className="w-14 h-14" />
@@ -61,8 +57,8 @@ export default function SigninScreen() {
             className="mb-3"
             register={register}
           />
-          <NavButton variant="primary" type="submit" >
-            Ingresar 
+          <NavButton variant="primary" type="submit">
+            Ingresar
           </NavButton>
           <div className="border-solid border-t mt-5 pt-3 text-gray-400 font-normal text-center">
             <span>Si no tienes una cuenta,{` `}</span>
@@ -72,7 +68,6 @@ export default function SigninScreen() {
             <span>.</span>
           </div>
         </form>
-  
       </div>
     </main>
   );

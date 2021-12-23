@@ -25,8 +25,8 @@ export default function LandingLayout() {
             to="/"
             className="text-xl text-white font-bold flex flex-row items-center"
           >
-            <Logo className="w-8 h-8" />
-            <span className="pl-2">SaludMedic</span>
+            <Logo className="w-9 h-9" />
+            <span className="pl-2 hidden sm:flex">SaludMedic</span>
           </Link>
           <ul className="hidden md:flex flex-row space-x-12 items-center">
             <Link to="/informacion">
@@ -44,7 +44,7 @@ export default function LandingLayout() {
                 <UserIcon className="w-8 h-8" />
               </li>
             </Link>
-            
+
             {/* <Link to="/login">
               <li className={variants["primary"]}>Iniciar sesión</li>
             </Link>
