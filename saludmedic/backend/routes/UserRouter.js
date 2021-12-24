@@ -24,18 +24,23 @@ router.post("/", (req, res) => {
       "INSERT INTO prueba (codigo , dni , password) VALUES (? , ? , ?) ;",
       [codigo, dni, hash],
       (err, result) => {
-        if (err ){
-         
-          res.send({err : err})
+        try {
+          if (err ){       
+            res.send({err : err})
+            
+          }
           
-        }
-  
         if (result) {
           res.send(result);
           res.send("usuario registrado ")
         }else {
           res.send({ message : "Usuario no registrado"});
         }
+        }catch (err){
+          console.log(err);
+        }
+      
+  
       }
     );
   });
