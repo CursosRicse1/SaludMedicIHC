@@ -15,17 +15,16 @@ export default function CamasScreen() {
       </h1>
 
       <div className="bg-gray-200 border-gray-300 rounded m-10 p-5">
-        <div className="grid grid-cols-4">
-          <div>
-            <Select
-              variant="primary"
-              label="Nombre"
-              name="nombre"
-              options={[{ value: "", label: "" }]}
-              register={() => null}
-            />
+        
+        <div className="m-10 flex place-content-center">
+          <div className="px-5">
+            <RegisterCard />
           </div>
-          <div>
+          <div className="px-5">
+            <RegisterCard />
+          </div>
+          <div className="px-5">
+            <RegisterCard />
           </div>
         </div>
       </div>
