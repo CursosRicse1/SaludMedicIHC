@@ -14,6 +14,7 @@ import DefuncionScreen from "./defuncion";
 import AseguradoScreen from "./asegurado";
 import CamasScreen from "./camasUsuario";
 import RegistarPacienteScreen from "./registrarPacientes";
+import AseguradoMain from "./aseguradoMain";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -44,11 +45,12 @@ function App() {
         <Route path="/login" element={<SigninScreen />} />
         <Route path="/register" element={<RegisterScreen />} />
         <Route path="/main" element={<MainScreen />} />
-        <Route path="/asegurado" element={<AseguradoScreen/>}/>
+        <Route path="/asegurado" element={<AseguradoScreen />} />
         <Route path="/atencion" element={<AtencionScreen />} />
         <Route path="/camas" element={<CamasScreen/>}/>
         <Route path="/registarpaciente" element={<RegistarPacienteScreen/>}/>
         <Route path="/main/defuncion" element={<DefuncionScreen/>}/>
+        <Route path="/asegurado-main" element={<AseguradoMain />} />
         <Route path="*" element={<ErrorScreen />} />
       </Routes>
     </BrowserRouter>
