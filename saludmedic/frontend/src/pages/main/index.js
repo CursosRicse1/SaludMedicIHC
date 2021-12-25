@@ -1,5 +1,5 @@
 import Axios from "axios";
-import AseguradoScreen from "pages/asegurado";
+import AseguradoMain from "pages/aseguradoMain";
 import React, { useState, useEffect } from "react";
 import DoctorScreen from "pages/Doctor";
 import ErrorScreen from "pages/error";
@@ -24,7 +24,7 @@ export default function MainScreen() {
 
   return (
     <div>
-      {rol === "asegurado" && <AseguradoScreen />}
+      {rol === "asegurado" && <AseguradoMain />}
       {rol === "doctor" && <DoctorScreen />}
       {rol === "" && <ErrorScreen />}
 

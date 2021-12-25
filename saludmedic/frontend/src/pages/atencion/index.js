@@ -3,9 +3,12 @@ import TextInput from "components/TextInput";
 import Select from "components/Select";
 import Button from "components/Buttons/NavButton";
 import Medical from "components/icons/Medical";
+import {useNavigate} from "react-router-dom"
 import "react-calendar/dist/Calendar.css";
 
 export default function Atencion() {
+  let navigate = useNavigate();
+
   return (
     <main className="flex flex-col items-center justify-center h-almost-screen">
       <div className="w-11/12 md:w-4/6 lg:w-5/6 xl:w-7/12">
@@ -51,7 +54,7 @@ export default function Atencion() {
               <Button variant="primary" register={() => null}>
                 Reservar
               </Button>
-              <Button variant="secondary" register={() => null}>
+              <Button variant="secondary"  onClick = {()=>{ navigate("/main")}}>
                 Volver
               </Button>
             </div>

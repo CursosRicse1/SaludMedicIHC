@@ -2,8 +2,10 @@ import SpecialistTable from "components/Table/specialistTable";
 import NavButton from "components/Buttons/NavButton";
 import Calendar from "react-calendar";
 import Medical from "components/icons/Medical";
+import { useNavigate } from 'react-router';
 
 export default function AseguradoMain() {
+    let navigate = useNavigate();
   return (
     <main className="flex flex-col items-center justify-center h-auto lg:h-almost-screen">
       <div className="w-11/12 md:w-4/6 lg:w-5/6 xl:w-7/12 pt-4">
@@ -18,9 +20,14 @@ export default function AseguradoMain() {
         <div className="grid grid-cols-1 sm:grid-cols-2 pb-4">
           <div className="grid grid-cols-2 sm:grid-cols-1 gap-2 space-x-0 mt-2 justify-self-center justify-items-center">
             <NavButton
+           
               variant="primary"
               className="w-full sm:w-48 h-14 sm:h-20 my-2 sm:m-0"
+              onClick={() =>{
+                  navigate("/registrar")
+              }}
             >
+              
               Registrar un asegurado
             </NavButton>
             <NavButton
@@ -32,6 +39,9 @@ export default function AseguradoMain() {
             <NavButton
               variant="primary"
               className="w-full sm:w-48 h-14 sm:h-20 col-span-2 sm:col-span-1 mb-4 sm:mb-0"
+              onClick={() =>{
+                navigate("/main/atencion")
+            }}
             >
               Generar cita
             </NavButton>

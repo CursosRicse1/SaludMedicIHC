@@ -43,8 +43,8 @@ function App() {
         <Route path="/login" element={<SigninScreen />} />
         <Route path="/register" element={<RegisterScreen />} />
         <Route path="/main" element={<MainScreen />} />
-        <Route path="/asegurado" element={<AseguradoScreen />} />
-        <Route path="/atencion" element={<AtencionScreen />} />
+        <Route path="/main/registrar" element={<AseguradoScreen />} />
+        <Route path="/main/atencion" element={<AtencionScreen />} />
         <Route path="/main/defuncion" element={<DefuncionScreen />} />
         <Route path="/asegurado-main" element={<AseguradoMain />} />
         <Route path="*" element={<ErrorScreen />} />
