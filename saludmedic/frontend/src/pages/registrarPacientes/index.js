@@ -9,10 +9,8 @@ export default function RegistarPacienteScreen() {
   const { register, handleSubmit } = useForm();
 
   return (
-    <Fragment>
-      <h1 className="ml-5 mt-5 text-xl font-bold">
-        Registar Pacientes
-      </h1>
+    <form action="">
+      <h1 className="ml-5 mt-5 text-xl font-bold">Registar Pacientes</h1>
 
       <div className="bg-gray-200 border-gray-300 rounded m-10 p-5">
         <div className="grid grid-cols-4">
@@ -39,6 +37,6 @@ export default function RegistarPacienteScreen() {
           </div>
         </div>
       </div>
-    </Fragment>
+    </form>
   );
 }

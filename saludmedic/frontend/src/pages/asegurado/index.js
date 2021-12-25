@@ -7,7 +7,7 @@ export default function AseguradoScreen() {
   const { register, handleSubmit } = useForm();
 
   return (
-    <Fragment>
+    <form action="">
       <h1 className="ml-5 mt-5 text-xl">Registrar Asegurados</h1>
 
       <div className="bg-gray-200 border-gray-300 rounded m-10 p-5">
@@ -81,6 +81,6 @@ export default function AseguradoScreen() {
           </div>
         </div>
       </div>
-    </Fragment>
+    </form>
   );
 }
