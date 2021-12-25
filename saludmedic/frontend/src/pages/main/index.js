@@ -1,7 +1,7 @@
 import Axios from "axios";
 import AseguradoScreen from "pages/asegurado";
 import React, { useState, useEffect } from "react";
-import DoctorScreen from "pages/doctor";
+import DoctorScreen from "pages/Doctor";
 import ErrorScreen from "pages/error";
 
 export default function MainScreen() {
