@@ -1,8 +1,7 @@
-import NavButton from "components/Buttons/NavButton";
+
 import RegisterCard from "components/Card/RegisterCard";
 import Select from "components/Select";
-import TextInput from "components/TextInput";
-import React, { Fragment } from "react";
+
 import { useForm } from "react-hook-form";
 
 export default function RegistarPacienteScreen() {
