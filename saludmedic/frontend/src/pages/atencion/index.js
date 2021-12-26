@@ -3,12 +3,35 @@ import TextInput from "components/TextInput";
 import Select from "components/Select";
 import Button from "components/Buttons/NavButton";
 import Medical from "components/icons/Medical";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import "react-calendar/dist/Calendar.css";
+import Axios from "axios";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 
 export default function Atencion() {
+  const { register, handleSubmit } = useForm();
   let navigate = useNavigate();
+  const [state, setstate] = useState("");
+  Axios.get("http://localhost:5000/especialidad")
+    .then((response) => {
+      console.log(response);
+      setstate({ especialidad: response });
+      console.log(state);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
+  const registerCita = (data) => {
+    window.alert("enviado");
+    console.log(data);
+    Axios.post("http://localhost:5000/asegura/cita", {
+      data:data.fecha
+    }).then((response) => {
+      window.alert("Enviado correctamente");
+    });
+  };
   return (
     <main className="flex flex-col items-center justify-center h-almost-screen">
       <div className="w-11/12 md:w-4/6 lg:w-5/6 xl:w-7/12">
@@ -23,26 +46,28 @@ export default function Atencion() {
             <span className="text-gray-500 font-semibold pb-2">Calendario</span>
             <Calendar />
           </div>
-          <form className="px-0 sm:px-20 md:px-16 lg:px-7">
+          <form
+            onSubmit={handleSubmit(registerCita)}
+            className="px-0 sm:px-20 md:px-16 lg:px-7"
+          >
             <div className="flex flex-col">
               <Select
                 variant="primary"
                 label="Selecione la especialidad"
                 name="especialidad"
-                options={[
-                  { value: "Alergia", label: "Alergología" },
-                  { value: "Cardio", label: "Cardiología" },
-                  { value: "Endocrino", label: "Endocrinología" },
-                  { value: "Sangre", label: "Hematología" },
-                ]}
-                register={() => null}
+            
+                options={ state.especialidad.map((e) => (
+                  [ { value : e.especialidad , label : e.especialidad}]
+                ))}
+                register={register}
               />
             </div>
             <div className="flex flex-col">
               <TextInput
+              name = "fecha"
                 label="Fecha de la cita"
                 type="date"
-                register={() => null}
+                register={register}
               />
               <TextInput
                 label="Hora de la cita"
@@ -54,7 +79,12 @@ export default function Atencion() {
               <Button variant="primary" register={() => null}>
                 Reservar
               </Button>
-              <Button variant="secondary"  onClick = {()=>{ navigate("/main")}}>
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  navigate("/main");
+                }}
+              >
                 Volver
               </Button>
             </div>

@@ -31,11 +31,23 @@ router.post("/registarFamiliar", (req, res) => {
             }
         }catch(err){
             console.log(err);
-        }
-
-            
+        }           
     }
     )
 });
+router.post("/registarFamiliar", (req, res) => {
+    let reqBody = req.body;
+    console.log(reqBody);
+    const codigo = reqBody.maca;
+    const nombre = reqBody.nombres;
+    const apellidos = reqBody.apellidos;
+    const dni = reqBody.dni;
+    const fecha = reqBody.fecha;
+    const email = reqBody.email;
+    const direccion = reqBody.direccion;
+    const telefono = reqBody.telefono;
+
+  });
+  
 
 module.exports = router;
