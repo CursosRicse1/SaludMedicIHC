@@ -4,6 +4,7 @@ const app = express();
 const aseguradoRouter = require('./routes/asegurado/registrarFamiliar.js')
 const UserRouter = require('./routes/UserRouter.js')
 const difuntoRouter = require('./routes/doctor/difunto/difuntoRouter.js')
+const getRoutes = require('./routes/getRoutes/routes.js')
 const db = require('./database/conexion');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -37,15 +38,38 @@ app.use(
     },
   })
 );
+let Sessioncodigo
 
-app.get("/auth/login", (req, res) => {
+
+app.get("/auth/login", async (req, res) => {
+  
   if (req.session.user) {
+
     res.send({ loggedIn: true, user: req.session.user });
+    Sessioncodigo = await req.session.user[0].codigo 
   } else {
     res.send({ loggedIn: false });
   }
 });
+app.get("/registrados" , async (req , res) => {
+   const codigo  = await Sessioncodigo;
+   try{
+   
+    db.query(
+      " select nombre  from familiar where codigo = '"+codigo+"';",
+      (err, result) => {
+     
+          res.send(result)
+        
+      }
+    );
+  }catch(err){
+    console.log(err)
+  }
+  
 
+   
+})
 //LOGING
 app.post("/auth/login", (req, res) => {
   let reqBody = req.body;
@@ -76,14 +100,7 @@ app.post("/auth/login", (req, res) => {
     }
   });
 });
-
-app.get("/especialidad" , (req , res ) => {
-  db.query(" SELECT  especialidad from prueba where rol = 'doctor';" , (err , result )=> {
-
-    res.send(result)
-  })
-
-})
+app.use("/",getRoutes)
 app.use("/auth" , UserRouter );
 app.use("/doctor",difuntoRouter)
 app.use("/asegurado" , aseguradoRouter);
@@ -100,6 +117,3 @@ app.listen(5000 , () =>{
   });
 
 
-app.get("/", (req, res) => {
-  res.send("Serivdor operando");
-});

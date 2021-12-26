@@ -3,12 +3,32 @@ import NavButton from "components/Buttons/NavButton";
 import Calendar from "react-calendar";
 import Medical from "components/icons/Medical";
 import { useNavigate } from 'react-router';
+import React, { useState } from "react";
 import Axios from 'axios'
 Axios.defaults.withCredentials = true;
 export default function AseguradoMain() {
     let navigate = useNavigate();
+   
+    
+    const [codigo , setCodigo] = useState("")
+  
+      Axios.get("http://localhost:5000/auth/login").then((response) => {
+        if (response.data.loggedIn === true) {
+          setCodigo(response.data.user[0].codigo);
+          console.log(codigo)
+        }
+      });
+
+    
+   
+    
+
+
+
   return (
+    <form >
     <main className="flex flex-col items-center justify-center h-auto lg:h-almost-screen">
+     
       <div className="w-11/12 md:w-4/6 lg:w-5/6 xl:w-7/12 pt-4">
         <div className="flex flex-row items-center justify-start w-full mb-6 border-b-2 pb-2">
           <i>
@@ -40,10 +60,14 @@ export default function AseguradoMain() {
             </NavButton>
             <NavButton
               variant="primary"
+              name = {codigo}
               className="w-full sm:w-48 h-14 sm:h-20 col-span-2 sm:col-span-1 mb-4 sm:mb-0"
+              type = "submit"
               onClick={() =>{
                 navigate("/atencion")
+                
             }}
+            
             >
               Generar cita
             </NavButton>
@@ -56,6 +80,8 @@ export default function AseguradoMain() {
           <SpecialistTable />
         </div>
       </div>
+     
     </main>
+    </form>
   );
 }
