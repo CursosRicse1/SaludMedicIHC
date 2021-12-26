@@ -12,12 +12,12 @@ import { useForm } from "react-hook-form";
 export default function Atencion() {
   const { register, handleSubmit } = useForm();
   let navigate = useNavigate();
-  const [state, setstate] = useState("");
+  const [combo, setCombo] = useState([]);
   Axios.get("http://localhost:5000/especialidad")
     .then((response) => {
       console.log(response);
-      setstate({ especialidad: response });
-      console.log(state);
+      setCombo(response.data);
+      console.log(combo);
     })
     .catch((err) => {
       console.log(err);
@@ -27,11 +27,20 @@ export default function Atencion() {
     window.alert("enviado");
     console.log(data);
     Axios.post("http://localhost:5000/asegura/cita", {
-      data:data.fecha
-    }).then((response) => {
+      data: data.fecha,
+    }).then(() => {
       window.alert("Enviado correctamente");
     });
   };
+
+  function prueba(a) {
+    var obj = {
+      value: a,
+      label: a,
+    };
+    return obj;
+  }
+
   return (
     <main className="flex flex-col items-center justify-center h-almost-screen">
       <div className="w-11/12 md:w-4/6 lg:w-5/6 xl:w-7/12">
@@ -55,16 +64,13 @@ export default function Atencion() {
                 variant="primary"
                 label="Selecione la especialidad"
                 name="especialidad"
-            
-                options={ state.especialidad.map((e) => (
-                  [ { value : e.especialidad , label : e.especialidad}]
-                ))}
+                options={combo?.map((e) => prueba(e.especialidad))}
                 register={register}
               />
             </div>
             <div className="flex flex-col">
               <TextInput
-              name = "fecha"
+                name="fecha"
                 label="Fecha de la cita"
                 type="date"
                 register={register}
