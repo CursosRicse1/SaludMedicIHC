@@ -3,7 +3,8 @@ import NavButton from "components/Buttons/NavButton";
 import Calendar from "react-calendar";
 import Medical from "components/icons/Medical";
 import { useNavigate } from 'react-router';
-
+import Axios from 'axios'
+Axios.defaults.withCredentials = true;
 export default function AseguradoMain() {
     let navigate = useNavigate();
   return (
@@ -24,7 +25,7 @@ export default function AseguradoMain() {
               variant="primary"
               className="w-full sm:w-48 h-14 sm:h-20 my-2 sm:m-0"
               onClick={() =>{
-                  navigate("/registrar")
+                  navigate("/asegurado")
               }}
             >
               
@@ -33,6 +34,7 @@ export default function AseguradoMain() {
             <NavButton
               variant="primary"
               className="w-full sm:w-48 h-14 sm:h-20 my-2 sm:m-0"
+              onClick = {()=>{navigate("/camas")}}
             >
               Camas del asegurado
             </NavButton>
@@ -40,7 +42,7 @@ export default function AseguradoMain() {
               variant="primary"
               className="w-full sm:w-48 h-14 sm:h-20 col-span-2 sm:col-span-1 mb-4 sm:mb-0"
               onClick={() =>{
-                navigate("/main/atencion")
+                navigate("/atencion")
             }}
             >
               Generar cita

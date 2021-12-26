@@ -1,11 +1,12 @@
 import NavButton from "components/Buttons/NavButton";
 import TextInput from "components/TextInput";
-import React, { Fragment } from "react";
+import Axios from 'axios';
 import { useForm } from "react-hook-form";
-
+import { useNavigate } from 'react-router';
+Axios.defaults.withCredentials = true;
 export default function AseguradoScreen() {
   const { register, handleSubmit } = useForm();
-
+  let navigate = useNavigate();
   return (
     <form action="">
       <h1 className="ml-5 mt-5 text-xl">Registrar Asegurados</h1>
@@ -75,8 +76,8 @@ export default function AseguradoScreen() {
             </NavButton>
           </div>
           <div className="col-start-3 col-end-4">
-            <NavButton variant="primary" type="submit">
-              Cancelar
+            <NavButton variant="primary" type="submit" onClick = {()=>{navigate("/main")}}     >
+              Volver
             </NavButton>
           </div>
         </div>
