@@ -31,6 +31,7 @@ router.post("/", (req, res) => {
           }
           
         if (result) {
+          db.query("insert INTO familiar (nombre , codigo , dni )  select nombre , codigo , dni from SaludMedic.prueba  where codigo = '"+codigo+"';")
           res.send(result);
           res.send("usuario registrado ")
         }else {
