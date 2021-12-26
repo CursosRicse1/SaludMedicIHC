@@ -77,7 +77,13 @@ app.post("/auth/login", (req, res) => {
   });
 });
 
+app.get("/especialidad" , (req , res ) => {
+  db.query(" SELECT  especialidad from prueba where rol = 'doctor';" , (err , result )=> {
 
+    res.send(result)
+  })
+
+})
 app.use("/auth" , UserRouter );
 app.use("/doctor",difuntoRouter)
 app.use("/asegurado" , aseguradoRouter);
