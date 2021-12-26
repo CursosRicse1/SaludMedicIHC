@@ -1,6 +1,7 @@
 const express = require("express");
 const session = require("express-session");
 const app = express();
+const aseguradoRouter = require('./routes/asegurado/registrarFamiliar.js')
 const UserRouter = require('./routes/UserRouter.js')
 const difuntoRouter = require('./routes/doctor/difunto/difuntoRouter.js')
 const db = require('./database/conexion');
@@ -79,6 +80,7 @@ app.post("/auth/login", (req, res) => {
 
 app.use("/auth" , UserRouter );
 app.use("/doctor",difuntoRouter)
+app.use("/asegurado" , aseguradoRouter);
 
 app.post('/logout' , (req  , res ) => {
   req.session.destroy((err) =>{
