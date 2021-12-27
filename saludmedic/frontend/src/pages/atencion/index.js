@@ -51,11 +51,10 @@ export default function Atencion() {
   };
 
   function prueba(a) {
-    var obj = {
+    return {
       value: a,
       label: a,
     };
-    return obj;
   }
   function sendNombre(a) {
     var obj = {
@@ -66,7 +65,7 @@ export default function Atencion() {
   }
 
   return (
-    <main className="flex flex-col items-center justify-center h-almost-screen">
+    <main className="flex flex-col items-center justify-center h-auto mt-10 md:mt-24">
       <div className="w-11/12 md:w-4/6 lg:w-5/6 xl:w-7/12">
         <div className="flex flex-row items-center justify-start w-full mb-6 border-b-2 pb-2">
           <i>
@@ -81,25 +80,28 @@ export default function Atencion() {
           </div>
           <form
             onSubmit={handleSubmit(registerCita)}
-            className="px-0 sm:px-20 md:px-16 lg:px-7"
+            className="px-4 md:px-8 lg:px-7 bg-gray-100 border rounded-lg pt-3 mb-10 lg:mb-0"
           >
-             <div className="flex flex-col">
-              <Select
-                variant="primary"
-                label="Nombre del paciente"
-                name="nombre"
-                options={nombre?.map((e) => sendNombre(e.nombre))}
-                register={register}
-              />
-            </div>
-            <div className="flex flex-col">
-              <Select
-                variant="primary"
-                label="Selecione la especialidad"
-                name="especialidad"
-                options={combo?.map((e) => prueba(e.especialidad))}
-                register={register}
-              />
+            {/* Agregar select paciente */}
+            <div className="flex flex-row justify-between">
+              <div className="w-[50%]">
+                <Select
+                  variant="primary"
+                  label="Paciente"
+                  name="especialidad"
+                  options={combo?.map((e) => prueba(e.especialidad))}
+                  register={register}
+                />
+              </div>
+              <div className="w-[45%]">
+                <Select
+                  variant="primary"
+                  label="Especialidad"
+                  name="especialidad"
+                  options={combo?.map((e) => prueba(e.especialidad))}
+                  register={register}
+                />
+              </div>
             </div>
             <div className="flex flex-col">
               <TextInput
