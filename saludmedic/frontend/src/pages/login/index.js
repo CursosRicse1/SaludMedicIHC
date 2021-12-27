@@ -73,6 +73,7 @@ export default function SigninScreen() {
           />
           <TextInput
             name="password"
+            type="password"
             label="Contraseña"
             className="mb-3"
             register={register}

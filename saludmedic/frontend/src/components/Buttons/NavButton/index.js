@@ -3,6 +3,7 @@ export default function NavButton({
   variant,
   className,
   onClick,
+  disabled = false,
   ...props
 }) {
   const types = {
@@ -19,6 +20,7 @@ export default function NavButton({
   return (
     <button
       {...props}
+      disabled={disabled}
       onClick={onClick}
       className={`${types[variant]} font-bold rounded-md px-7 py-1  ${className}`}
     >
