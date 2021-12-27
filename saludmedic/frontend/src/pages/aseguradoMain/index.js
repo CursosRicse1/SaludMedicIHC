@@ -5,10 +5,33 @@ import Medical from "components/icons/Medical";
 import { useNavigate } from "react-router";
 import Axios from "axios";
 import Row from "components/Table/ui/SpecTableRow";
+import React, { useState } from "react";
 
 Axios.defaults.withCredentials = true;
 export default function AseguradoMain() {
   let navigate = useNavigate();
+  const [especial1, setNombre] = useState([]);
+  const [especial2, setNombre2] = useState([]);
+ 
+  Axios.get("http://localhost:5000/especialista")
+    .then((response) => {
+      setNombre(response.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  Axios.get("http://localhost:5000/especialidad")
+    .then((response) => {
+      setNombre2(response.data);
+      
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+    
+
+
   return (
     <main className="flex flex-col items-center justify-center h-auto mt-10 md:mt-24">
       <div className="w-11/12 md:w-4/6 lg:w-5/6 xl:w-7/12 pt-4">
@@ -46,7 +69,6 @@ export default function AseguradoMain() {
               onClick={() => {
                 navigate("/atencion");
               }}
-
             >
               Generar cita
             </NavButton>
@@ -57,14 +79,16 @@ export default function AseguradoMain() {
         </div>
         <div>
           <SpecialistTable>
-            <Row especialista="Juan" especialidad="Cardiología"  /><Row limite="1"></Row>
-            <Row especialista="Juan" especialidad="Cardiología" limite="1" />
-            <Row especialista="Juan" especialidad="Cardiología" limite="1" />
+            {especial1.map((e) => (
+              <Row especialista = {e.nombre} 
+              
+              especialidad = "Doctor"
+              limite = {e.limite}>  </Row>
+            ))}
           </SpecialistTable>
+       
         </div>
       </div>
-     
     </main>
-  
   );
 }

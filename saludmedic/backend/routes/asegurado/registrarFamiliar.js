@@ -65,16 +65,7 @@ router.post("/cita", (req, res) => {
     )
   });
 
-  router.get("/tabla" , (req , res )=> {
-      db.query("SELECT  distinct p.nombre,c.especialidad , count(*) as limite FROM citas as c join prueba as p on c.especialidad = p.especialidad where  fecha= curdate() ; " , 
-      (err , result )=> {
-          try {
-            res.send(result)
-          }catch(err){
 
-          }
-      })
-  })
   
 
 module.exports = router;

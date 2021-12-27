@@ -116,6 +116,18 @@ app.post("/auth/login", (req, res) => {
     }
   });
 });
+
+app.get("/especialista" , (req , res )=> {
+  db.query('select p.nombre , count(*) as limite from citas as c join prueba as p on c.especialidad = p.especialidad  where  fecha= curdate()  group by p.nombre' ,
+  (err , result )=> {
+      try {
+        res.send(result)
+      }catch(err){
+
+      }
+  })
+})
+
 app.use("/",getRoutes)
 app.use("/auth" , UserRouter );
 app.use("/doctor",difuntoRouter)
@@ -129,7 +141,7 @@ app.post('/logout' , (req  , res ) => {
 })
 
 app.listen(5000 , () =>{
-    console.log("Servidor corriendo en el puerto 5000");
+    console.log("Servidor corriendo en el puerto ");
   });
 
 
