@@ -7,3 +7,15 @@ body,
 #root {
   height: 100vh;
 }
+
+table {
+  font-family: futura-pt, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  border-collapse: collapse;
+  width: 100%;
+  border-radius: 10px;
+
+  /* add this */
+  overflow: hidden;
+}

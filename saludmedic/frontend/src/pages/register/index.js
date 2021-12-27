@@ -5,11 +5,28 @@ import NavButton from "components/Buttons/NavButton";
 import Logo from "components/icons/Logo";
 import { BgImage } from "pages/login";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 export default function RegisterScreen() {
   let navigate = useNavigate();
 
-  const { register, handleSubmit } = useForm();
+  const schema = yup.object().shape({
+    codigo: yup.string().required("Es un campo requerido."),
+    dni: yup.string().required("Es un campo requerido."),
+    nombre: yup.string().required("Es un campo requerido."),
+    apellido: yup.string().required("Es un campo requerido."),
+    password: yup.string().required("La contraseña es requerida."),
+  });
+
+  const {
+    register, //campos del formulario
+    handleSubmit, //funcion para enviar el formulario
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
   const registerForm = (data) => {
     navigate("/login");
     Axios.post("http://localhost:5000/auth", {
@@ -44,6 +61,7 @@ export default function RegisterScreen() {
                 label="Código del seguro"
                 className="mb-3"
                 register={register}
+                errors={errors.codigo}
               />
             </div>
             <div className="flex flex-col w-[45%]">
@@ -52,14 +70,35 @@ export default function RegisterScreen() {
                 label="DNI"
                 className="mb-3"
                 register={register}
+                errors={errors.dni}
               />
             </div>
           </div>
+          <div className="flex flex-row justify-between">
+            <div className="flex flex-col w-[45%]"></div>
+            <div className="flex flex-col w-[45%]"></div>
+          </div>
+          <TextInput
+            name="nombre"
+            label="Nombres"
+            className="mb-3"
+            register={() => null}
+            //errors={errors.nombre}
+          />
+          <TextInput
+            name="apellido"
+            label="Apellidos"
+            className="mb-3"
+            register={() => null}
+            //errors={errors.apellido}
+          />
           <TextInput
             name="password"
+            type="password"
             label="Contraseña"
             className="mb-3"
             register={register}
+            errors={errors.password}
           />
           <NavButton type="submit" variant="primary">
             Registrarse

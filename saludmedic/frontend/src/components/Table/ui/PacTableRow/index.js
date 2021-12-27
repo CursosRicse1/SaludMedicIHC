@@ -1,3 +1,5 @@
+import BedTable from "components/icons/BedTable";
+
 const bodyStyle =
   "w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static";
 const spanStyle =
@@ -5,22 +7,26 @@ const spanStyle =
 const trStyle =
   "bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0";
 
-export default function RowTable({ especialista, especialidad, limite }) {
+export default function PacRowTable({ paciente, cama, fecha }) {
   return (
     <tr className={trStyle}>
       <td className={bodyStyle}>
-        <span className={spanStyle}>Especialista</span>
-        {especialista}
+        <span className={spanStyle}>Paciente</span>
+        {paciente}
       </td>
       <td className={bodyStyle}>
-        <span className={spanStyle}>Especialidad</span>
-        {especialidad}
+        <span className={spanStyle}>Cama</span>
+        <div title={cama ? "libre" : "ocupada"} className="flex justify-center">
+          <BedTable
+            className={`fill-current ${
+              cama ? "text-green-600" : "text-red-600"
+            }`}
+          />
+        </div>
       </td>
       <td className={bodyStyle}>
-        <span className={spanStyle}>Límite</span>
-        <span className="rounded bg-green-500 py-1 px-3 text-xs text-white font-bold">
-          {limite}/5
-        </span>
+        <span className={spanStyle}>Fecha</span>
+        {fecha}
       </td>
     </tr>
   );
