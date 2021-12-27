@@ -49,7 +49,10 @@ function App() {
         <Route path="/asegurado" element={<AseguradoScreen />} />
         <Route path="/atencion" element={<AtencionScreen />} />
         <Route path="/camas" element={<CamasScreen />} />
-        <Route path="/registarpaciente" element={<RegistarPacienteScreen />} />
+        <Route
+          path="/registrar-paciente"
+          element={<RegistarPacienteScreen />}
+        />
         <Route path="/main/defuncion" element={<DefuncionScreen />} />
         <Route path="/asegurado-main" element={<AseguradoMain />} />
         <Route path="/doctor-main" element={<DoctorMain />} />
