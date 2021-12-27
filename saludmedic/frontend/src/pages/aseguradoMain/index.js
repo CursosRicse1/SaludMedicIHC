@@ -46,7 +46,6 @@ export default function AseguradoMain() {
               onClick={() => {
                 navigate("/atencion");
               }}
-
             >
               Generar cita
             </NavButton>
@@ -63,8 +62,6 @@ export default function AseguradoMain() {
           </SpecialistTable>
         </div>
       </div>
-     
     </main>
-  
   );
 }
