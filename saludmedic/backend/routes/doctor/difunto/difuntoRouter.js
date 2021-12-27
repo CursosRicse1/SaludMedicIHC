@@ -16,24 +16,21 @@ router.post("/difunto" , (req , res ) => {
     const hora = reqBody.hora;
     const sexo = reqBody.sexo;
     const descripcion = reqBody.descripcion;
-    db.query("INSERT INTO difuntos (nombre , dni , fecha , hora , sexo , descripcion ) VALUES (? , ? , ? , ? , ? , ?) ",
-    [nombre ,dni , fecha , hora , sexo, descripcion ],
+    db.query("INSERT INTO difuntos (nombre , dni , fecha , hora , sexo , descripcion ) VALUES ('"+nombre+"' , '"+dni+"' , '"+fecha+"' , '"+hora+"' , '"+sexo+"' , '"+descripcion+"') ;",
+   
     (err ,result) => {
-        try{
-           
-            if(result){
-                
-                db.query("delete from prueba where codigo = '"+codigo+"' ;")
-            }else{
-                res.send({message : " difunto no registrado"})
-            }
-        }catch(err){
-            console.log(err);
-        }
+       try{
+            res.send(result)
+            db.query("Delete from  prueba where codigo = '"+codigo+"' ; ")
+            db.query("Delete from familiar where codigo = '"+codigo+"' ;")
+       }catch(err){
+           console.log(err)
+       }
 
             
-    }
+        }
     )
+    })
   
-});
+
 module.exports = router;
