@@ -9,18 +9,16 @@ export default function CamasScreen() {
   const navigate = useNavigate();
   const [card, setCard] = useState([]);
 
-  const Camas = (data) => {
-    Axios.get("http://localhost:5000/api/sendCamas").then((response) => {
-      setCard(response.data);
-      console.log(response);
-    });
-  };
+  // const Camas = (data) => {
+  //   Axios.get("http://localhost:5000/api/sendCamas").then((response) => {
+  //     setCard(response.data);
+  //     console.log(response);
+  //   });
+  // };
 
-  useEffect(() => {
-    Axios.get("http://localhost:5000/api/sendCamas").then((response) => {
-      console.log(response);
-    });
-  }, []);
+  Axios.get("http://localhost:5000/api/sendCamas").then((response) => {
+    setCard(response.data);
+  });
 
   return (
     <main className="flex flex-col items-center justify-center h-auto mt-10 md:mt-24">
@@ -35,17 +33,14 @@ export default function CamasScreen() {
         </div>
         <form className="flex flex-col bg-[#F5F7FB] rounded-lg border-solid border p-4 h-[32rem]">
           {/* 2do */}
-          <div className="h-full overflow-y-scroll w-full content-center justify-self-center grid grid-cols-1 gap-10 2xl:gap-6 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 place-self-center place-items-center px-10 pt-[26rem] lg:pt-40">
+          <div className="h-full overflow-y-scroll w-full content-center justify-self-center grid grid-cols-1 gap-10 2xl:gap-6 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 place-self-center place-items-center px-10 ">
             {card.map((e) => (
-              <RegisterCard estado={e.estado} paciente={e.paciente} />
+              <RegisterCard estado={e.estado} paciente={e.nombre} />
             ))}
           </div>
           {/* 3ero */}
           <div className="flex justify-center py-3">
-            <NavButton
-              variant="secondary"
-              onClick={() => navigate("/registrarPacientes")}
-            >
+            <NavButton variant="secondary" onClick={() => navigate("/main")}>
               Volver
             </NavButton>
           </div>

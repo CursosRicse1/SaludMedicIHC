@@ -9,7 +9,7 @@ export default function MainScreen() {
   const [reloadUser, setReloadUser] = useState(false);
 
   useEffect(() => {
-    setInterval(login, 1000);
+    setInterval(login, 500);
   }, [reloadUser]);
 
   const login = () => {
