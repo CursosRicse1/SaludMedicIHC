@@ -1,4 +1,3 @@
-
 import RegisterCard from "components/Card/RegisterCard";
 import Select from "components/Select";
 
