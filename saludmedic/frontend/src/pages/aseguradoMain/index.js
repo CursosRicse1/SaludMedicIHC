@@ -57,7 +57,7 @@ export default function AseguradoMain() {
         </div>
         <div>
           <SpecialistTable>
-            <Row especialista="Juan" especialidad="Cardiología" limite="1" />
+            <Row especialista="Juan" especialidad="Cardiología"  /><Row limite="1"></Row>
             <Row especialista="Juan" especialidad="Cardiología" limite="1" />
             <Row especialista="Juan" especialidad="Cardiología" limite="1" />
           </SpecialistTable>
