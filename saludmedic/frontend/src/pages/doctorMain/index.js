@@ -3,16 +3,20 @@ import PacienteTable from "components/Table/pacienteTable";
 import Row from "components/Table/ui/PacTableRow";
 import Calendar from "react-calendar";
 import Mask from "components/icons/Mask";
+import {useNavigate} from 'react-router-dom'
 import FileInput from "components/FileInput";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import  { Imagen }  from  'cloudinary-react' ;
 import Axios from 'axios';
+
 export default function DoctorMain() {
   const {
     register, //campos del formulario
     handleSubmit, //funcion para enviar el formulario
   } = useForm();
 
+  let navigate = useNavigate();
   
 
   const handleFileChange = (e, field, setFile) => {
@@ -21,19 +25,21 @@ export default function DoctorMain() {
     setEnviar(_file)
     register(field).onChange(e);
   };
+
   const [dato, setEnviar ] =useState([]);
   const [fileImage, setFileImage] = useState(null);
+
   const enviarDato = () => {
     console.log("entro a consulta");
 
-    console.log(dato)
-    const formData = new FormData();
-      formData.append("file" , dato)
-      formData.append("upload_preset" , "ipzowozi")
-      formData.append("cloud_name" , "saludmedic")
-      Axios.post("https://api.cloudinary.com/v1_1/saludmedic/image/upload" ,formData).then((response) => {
-        console.log(JSON.stringify(response , null , 4))
-      })
+
+const formData = new FormData();
+formData.append("file" , dato)
+formData.append("upload_preset" , "ipzowozi")
+formData.append("cloud_name" , "saludmedic")
+Axios.post("https://api.cloudinary.com/v1_1/saludmedic/image/upload" ,formData).then((response) => {
+  console.log(JSON.stringify(response , null , 4))
+})
     
   };
   return (
@@ -50,6 +56,7 @@ export default function DoctorMain() {
             <form
               onSubmit={handleSubmit(enviarDato)}
               className="flex flex-col col-span-1 justify-self-center lg:justify-start lg:pt-4"
+              enctype = "multipart/form-data"
             >
               <h1 className="font-semibold text-gray-600 pl-4">Foto</h1>
               <div className="flex flex-col items-center">
@@ -73,10 +80,12 @@ export default function DoctorMain() {
             <div className="lg:justify-start lg:pt-4">
               <h1 className="font-semibold text-gray-600">Vistas</h1>
               <div className="flex flex-col justify-center h-auto mt-4 px-4 sm:px-10 lg:px-0 lg:pr-[15%] 2xl:pr-[25%]">
-                <NavButton variant="primary" className="h-16 mb-4">
+                <NavButton variant="primary" className="h-16 mb-4"  onClick = {() => {navigate("/main/defuncion")}}>
                   Defunción
                 </NavButton>
-                <NavButton variant="primary" className="h-16">
+                <NavButton variant="primary"  onClick={() => {
+                navigate("/registarpaciente");
+              }} className="h-16" >
                   Camas
                 </NavButton>
               </div>

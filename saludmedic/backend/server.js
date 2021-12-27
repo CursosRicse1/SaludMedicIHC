@@ -12,7 +12,7 @@ var cookieParser = require('cookie-parser')
 const req = require('express/lib/request');
 const bcrypt = require('bcrypt');
 const res = require("express/lib/response");
-
+const cloudynaryRouter = require('./apis/cloudinary.js')
 //Routersss
 
 app.use(express.json());
@@ -132,6 +132,7 @@ app.use("/",getRoutes)
 app.use("/auth" , UserRouter );
 app.use("/doctor",difuntoRouter)
 app.use("/asegurado" , aseguradoRouter);
+app.use("/api" , cloudynaryRouter);
 
 app.post('/logout' , (req  , res ) => {
   req.session.destroy((err) =>{
