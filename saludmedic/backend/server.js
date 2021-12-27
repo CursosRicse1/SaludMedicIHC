@@ -34,7 +34,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      expires: 60 * 60 * 24,
+      expires: 60 * 60 * 24 * 30,
     },
   })
 );
@@ -58,7 +58,7 @@ app.get("/registrados" , async (req , res) => {
     db.query(
       " select nombre  from familiar where codigo = '"+codigo+"';",
       (err, result) => {
-     
+
           res.send(result)
         
       }
@@ -67,8 +67,24 @@ app.get("/registrados" , async (req , res) => {
     console.log(err)
   }
   
-
-   
+})
+app.get("/api/sendCamas" ,  async (req , res) => {
+  const codigo  = await Sessioncodigo;
+  try{
+  
+   db.query(
+     " SELECT DISTINCT f.idFamiliar ,f.nombre , c.estado ,c.especialidad FROM familiar as f  join citas as c on c.nombre = f.nombre where codigo = '"+codigo+"'; "
+      ,
+     (err, result) => {
+    
+         res.send(result)
+       
+     }
+   );
+ }catch(err){
+   console.log(err)
+ }
+ 
 })
 //LOGING
 app.post("/auth/login", (req, res) => {

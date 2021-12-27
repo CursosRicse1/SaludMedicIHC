@@ -46,7 +46,7 @@ router.post("/cita", (req, res) => {
     const fecha = reqBody.fecha;
     const hora = reqBody.hora;
  
-    db.query("INSERT INTO citas  (nombre , especialidad , fecha , hora  ) VALUES (? , ? , ? , ?  ) ",
+    db.query("INSERT INTO citas  (nombre , especialidad , fecha , hora , estado ) VALUES (? , ? , ? , ? , '1'  ) ",
     [nombre , especialidad , fecha ,hora],
     (err ,result) => {
         try{
