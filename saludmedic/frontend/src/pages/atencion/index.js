@@ -13,15 +13,11 @@ export default function Atencion() {
   const { register, handleSubmit } = useForm();
   let navigate = useNavigate();
   const [combo, setCombo] = useState([]);
-  const [nombre ,setNombre] = useState([]);
-  
- 
-  
+  const [nombre, setNombre] = useState([]);
+
   Axios.get("http://localhost:5000/registrados")
     .then((response) => {
-      
       setNombre(response.data);
-      
     })
     .catch((err) => {
       console.log(err);
@@ -29,9 +25,7 @@ export default function Atencion() {
 
   Axios.get("http://localhost:5000/especialidad")
     .then((response) => {
-      
       setCombo(response.data);
-      
     })
     .catch((err) => {
       console.log(err);
@@ -42,9 +36,9 @@ export default function Atencion() {
     console.log(data);
     Axios.post("http://localhost:5000/asegurado/cita", {
       nombre: data.nombre,
-      especialidad : data.especialidad,
-      fecha : data.fecha,
-      hora : data.hora,
+      especialidad: data.especialidad,
+      fecha: data.fecha,
+      hora: data.hora,
     }).then(() => {
       window.alert("Enviado correctamente");
     });
@@ -57,11 +51,10 @@ export default function Atencion() {
     };
   }
   function sendNombre(a) {
-    var obj = {
+    return {
       value: a,
       label: a,
     };
-    return obj;
   }
 
   return (
@@ -111,17 +104,17 @@ export default function Atencion() {
                 register={register}
               />
               <TextInput
-                name = "hora"
+                name="hora"
                 label="Hora de la cita"
                 type="time"
                 register={register}
               />
             </div>
             <div className="w-full flex flex-row justify-center space-x-6 py-3 ">
-              <Button variant="primary" register={register} type = "submit">
+              <Button variant="primary" register={register} type="submit">
                 Reservar
               </Button>
-              <Button 
+              <Button
                 variant="secondary"
                 onClick={() => {
                   navigate("/main");
