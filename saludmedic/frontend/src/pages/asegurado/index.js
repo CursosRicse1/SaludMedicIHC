@@ -1,42 +1,37 @@
 import NavButton from "components/Buttons/NavButton";
 import TextInput from "components/TextInput";
-import Axios from 'axios';
-import React , {useState} from 'react';
+import Axios from "axios";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from 'react-router';
+import { useNavigate } from "react-router";
 Axios.defaults.withCredentials = true;
 export default function AseguradoScreen() {
   const { register, handleSubmit } = useForm();
   let navigate = useNavigate();
   const [codigo, setCodigo] = useState("");
- 
-    Axios.get("http://localhost:5000/auth/login").then((response) => {
-      if (response.data.loggedIn === true) {
-        setCodigo(response.data.user[0].codigo);
-       
-      }
-    });
-   
 
-  const registerCita = (data)=>{
- 
+  Axios.get("http://localhost:5000/auth/login").then((response) => {
+    if (response.data.loggedIn === true) {
+      setCodigo(response.data.user[0].codigo);
+    }
+  });
+
+  const registerCita = (data) => {
     window.alert("enviado");
     console.log(data);
-    Axios.post("http://localhost:5000/asegurado/registarFamiliar" ,  {
-      maca : codigo , 
-      nombres : data.nombres,
-      apellidos : data.apellidos , 
-      dni:data.dni , 
-      fecha : data.fecha , 
-      email : data.email , 
-      direccion : data.direccion , 
-      telefono : data.telefono
-
+    Axios.post("http://localhost:5000/asegurado/registarFamiliar", {
+      maca: codigo,
+      nombres: data.nombres,
+      apellidos: data.apellidos,
+      dni: data.dni,
+      fecha: data.fecha,
+      email: data.email,
+      direccion: data.direccion,
+      telefono: data.telefono,
     }).then((response) => {
-      window.alert("Enviado correctamente")
-    
-    })
-  }
+      window.alert("Enviado correctamente");
+    });
+  };
   return (
     <form onSubmit={handleSubmit(registerCita)}>
       <h1 className="ml-5 mt-5 text-xl">Registrar Asegurados</h1>
@@ -106,7 +101,13 @@ export default function AseguradoScreen() {
             </NavButton>
           </div>
           <div className="col-start-3 col-end-4">
-            <NavButton variant="primary" type="submit" onClick = {()=>{navigate("/main")}}     >
+            <NavButton
+              variant="primary"
+              type="submit"
+              onClick={() => {
+                navigate("/main");
+              }}
+            >
               Volver
             </NavButton>
           </div>
