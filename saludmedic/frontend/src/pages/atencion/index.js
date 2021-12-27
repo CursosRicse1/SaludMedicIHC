@@ -81,8 +81,8 @@ export default function Atencion() {
                 <Select
                   variant="primary"
                   label="Paciente"
-                  name="especialidad"
-                  options={combo?.map((e) => prueba(e.especialidad))}
+                  name="nombre"
+                  options={nombre?.map((e) => sendNombre(e.nombre))}
                   register={register}
                 />
               </div>
