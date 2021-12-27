@@ -13,25 +13,11 @@ export default function Atencion() {
   const { register, handleSubmit } = useForm();
   let navigate = useNavigate();
   const [combo, setCombo] = useState([]);
-  const [nombre ,setNombre] = useState([]);
-  
- 
-  
-  Axios.get("http://localhost:5000/registrados")
-    .then((response) => {
-      
-      setNombre(response.data);
-      
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-
   Axios.get("http://localhost:5000/especialidad")
     .then((response) => {
-      
+      console.log(response);
       setCombo(response.data);
-      
+      console.log(combo);
     })
     .catch((err) => {
       console.log(err);
@@ -40,24 +26,14 @@ export default function Atencion() {
   const registerCita = (data) => {
     window.alert("enviado");
     console.log(data);
-    Axios.post("http://localhost:5000/asegurado/cita", {
-      nombre: data.nombre,
-      especialidad : data.especialidad,
-      fecha : data.fecha,
-      hora : data.hora,
+    Axios.post("http://localhost:5000/asegura/cita", {
+      data: data.fecha,
     }).then(() => {
       window.alert("Enviado correctamente");
     });
   };
 
   function prueba(a) {
-    var obj = {
-      value: a,
-      label: a,
-    };
-    return obj;
-  }
-  function sendNombre(a) {
     var obj = {
       value: a,
       label: a,
@@ -83,15 +59,6 @@ export default function Atencion() {
             onSubmit={handleSubmit(registerCita)}
             className="px-0 sm:px-20 md:px-16 lg:px-7"
           >
-             <div className="flex flex-col">
-              <Select
-                variant="primary"
-                label="Nombre del paciente"
-                name="nombre"
-                options={nombre?.map((e) => sendNombre(e.nombre))}
-                register={register}
-              />
-            </div>
             <div className="flex flex-col">
               <Select
                 variant="primary"
@@ -109,17 +76,16 @@ export default function Atencion() {
                 register={register}
               />
               <TextInput
-                name = "hora"
                 label="Hora de la cita"
                 type="time"
-                register={register}
+                register={() => null}
               />
             </div>
             <div className="w-full flex flex-row justify-center space-x-6 py-3 ">
-              <Button variant="primary" register={register} type = "submit">
+              <Button variant="primary" register={() => null}>
                 Reservar
               </Button>
-              <Button 
+              <Button
                 variant="secondary"
                 onClick={() => {
                   navigate("/main");

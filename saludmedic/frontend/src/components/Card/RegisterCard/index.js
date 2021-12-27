@@ -8,7 +8,7 @@ export default function RegisterCard() {
       </div>
       <h1 className="font-bold mb-2">Cama </h1>
       <div className="flex flex-col w-full space-y-2 text-sm font-semibold text-gray-500">
-        <span>Estado: </span>
+        <span>Estado 1: {true}</span>
         <span>Paciente: </span>
       </div>
     </div>

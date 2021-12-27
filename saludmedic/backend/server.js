@@ -4,7 +4,6 @@ const app = express();
 const aseguradoRouter = require('./routes/asegurado/registrarFamiliar.js')
 const UserRouter = require('./routes/UserRouter.js')
 const difuntoRouter = require('./routes/doctor/difunto/difuntoRouter.js')
-const getRoutes = require('./routes/getRouter/routes.js')
 const db = require('./database/conexion');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -23,7 +22,7 @@ app.use(
     credentials: true,
   })
 );
-
+let SessionCodigo ;
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -38,37 +37,19 @@ app.use(
     },
   })
 );
-let Sessioncodigo
 
-
-app.get("/auth/login", async (req, res) => {
-  
+app.get("/auth/login", async  (req, res) => {
   if (req.session.user) {
-
     res.send({ loggedIn: true, user: req.session.user });
-    Sessioncodigo = await req.session.user[0].codigo 
+    SessionCodigo = await req.session.user[0].codigo;
   } else {
     res.send({ loggedIn: false });
   }
 });
-app.get("/registrados" , async (req , res) => {
-   const codigo  = await Sessioncodigo;
-   try{
-   
-    db.query(
-      " select nombre  from familiar where codigo = '"+codigo+"';",
-      (err, result) => {
-     
-          res.send(result)
-        
-      }
-    );
-  }catch(err){
-    console.log(err)
-  }
-  
 
-   
+app.get("/registrados" , (req ,res ) => {
+  const  codigo = SessionCodigo;
+  db.query("Select * from familiar where codigo = '"+codigo+"'  ")
 })
 //LOGING
 app.post("/auth/login", (req, res) => {
@@ -100,7 +81,14 @@ app.post("/auth/login", (req, res) => {
     }
   });
 });
-app.use("/",getRoutes)
+
+app.get("/especialidad" , (req , res ) => {
+  db.query(" SELECT  especialidad from prueba where rol = 'doctor';" , (err , result )=> {
+
+    res.send(result)
+  })
+
+})
 app.use("/auth" , UserRouter );
 app.use("/doctor",difuntoRouter)
 app.use("/asegurado" , aseguradoRouter);
@@ -117,3 +105,6 @@ app.listen(5000 , () =>{
   });
 
 
+app.get("/", (req, res) => {
+  res.send("Serivdor operando");
+});
