@@ -9,13 +9,18 @@ import Axios from "axios";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
+
+
+
 export default function Atencion() {
+  require('dotenv').config();
+  console.log(process.env.PORT)
   const { register, handleSubmit } = useForm();
   let navigate = useNavigate();
   const [combo, setCombo] = useState([]);
   const [nombre, setNombre] = useState([]);
 
-  Axios.get("http://localhost:5000/registrados")
+  Axios.get(`http://localhost:5000/registrados`)
     .then((response) => {
       setNombre(response.data);
     })

@@ -12,13 +12,19 @@ var cookieParser = require('cookie-parser')
 const req = require('express/lib/request');
 const bcrypt = require('bcrypt');
 const res = require("express/lib/response");
+require('dotenv').config();
+console.log(process.env.PORT)
+console.log(process.env.PORTF)
 const cloudynaryRouter = require('./apis/cloudinary.js')
-//Routersss
 
+
+//Routersss
+const puertoF = process.env.PORTF || 3000;
+ 
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: [`http://localhost:${puertoF}` ],
     methods: ["GET", "POST"],
     credentials: true,
   })
@@ -188,9 +194,11 @@ app.get("/doctor/tabla" , async(req , res) => {
 
 })
 
-app.listen(5000 ,  () =>{
-  const puerto=  "servidor operando";
-    console.log(puerto);
+
+
+app.listen(process.env.PORT,  () =>{
+  const puerto=  `servidor operando http://localhost:${process.env.PORT}`;
+    
   });
 
 
