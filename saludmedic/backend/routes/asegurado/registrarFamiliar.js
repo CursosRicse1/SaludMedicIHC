@@ -36,6 +36,7 @@ router.post("/registarFamiliar", (req, res) => {
     }
     )
 });
+
 //Generar Cita
 router.post("/cita", (req, res) => {
     let reqBody = req.body;
@@ -59,13 +60,12 @@ router.post("/cita", (req, res) => {
             }
         }catch(err){
             console.log(err);
-        }
-
-            
+        }           
     }
     )
-
   });
+
+
   
 
 module.exports = router;

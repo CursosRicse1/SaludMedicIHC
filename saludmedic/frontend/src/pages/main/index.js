@@ -1,8 +1,8 @@
 import Axios from "axios";
 import AseguradoMain from "pages/aseguradoMain";
 import React, { useState, useEffect } from "react";
-import DoctorScreen from "pages/doctorMain";
 import ErrorScreen from "pages/error";
+import DoctorMain from "pages/doctorMain";
 
 export default function MainScreen() {
   const [rol, setRole] = useState("");
@@ -24,7 +24,7 @@ export default function MainScreen() {
   return (
     <div>
       {rol === "asegurado" && <AseguradoMain />}
-      {rol === "doctor" && <DoctorScreen />}
+      {rol === "doctor" && <DoctorMain />}
       {rol === "" && <ErrorScreen />}
 
       <h1>f</h1>

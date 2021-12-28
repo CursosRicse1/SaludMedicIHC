@@ -12,7 +12,7 @@ var cookieParser = require('cookie-parser')
 const req = require('express/lib/request');
 const bcrypt = require('bcrypt');
 const res = require("express/lib/response");
-
+const cloudynaryRouter = require('./apis/cloudinary.js')
 //Routersss
 
 app.use(express.json());
@@ -116,10 +116,23 @@ app.post("/auth/login", (req, res) => {
     }
   });
 });
+
+app.get("/especialista" , (req , res )=> {
+  db.query('select p.nombre , count(*) as limite from citas as c join prueba as p on c.especialidad = p.especialidad  where  fecha= curdate()  group by p.nombre' ,
+  (err , result )=> {
+      try {
+        res.send(result)
+      }catch(err){
+
+      }
+  })
+})
+
 app.use("/",getRoutes)
 app.use("/auth" , UserRouter );
 app.use("/doctor",difuntoRouter)
 app.use("/asegurado" , aseguradoRouter);
+app.use("/api" , cloudynaryRouter);
 
 app.post('/logout' , (req  , res ) => {
   req.session.destroy((err) =>{
@@ -129,7 +142,7 @@ app.post('/logout' , (req  , res ) => {
 })
 
 app.listen(5000 , () =>{
-    console.log("Servidor corriendo en el puerto 5000");
+    console.log("Servidor corriendo en el puerto ");
   });
 
 
