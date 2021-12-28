@@ -9,8 +9,8 @@ router.get("/", (req, res) => {
   res.send("Serivdor operando");
 });
 
-router.get("/especialidad", (req, res) => {
-  db.query(
+router.get("/especialidad", async (req, res) => {
+  return await db.query(
     " SELECT  especialidad   from prueba where rol = 'doctor';",
     (err, result, fields) => {
       res.send(result)

@@ -5,7 +5,7 @@ const res = require("express/lib/response");
 const express = require("express");
 const router = express.Router();
 
-router.post("/difunto" , (req , res ) => {
+router.post("/difunto" , async  (req , res ) => {
    
     let reqBody = req.body;
     console.log(reqBody)
@@ -16,7 +16,7 @@ router.post("/difunto" , (req , res ) => {
     const hora = reqBody.hora;
     const sexo = reqBody.sexo;
     const descripcion = reqBody.descripcion;
-    db.query("INSERT INTO difuntos (nombre , dni , fecha , hora , sexo , descripcion ) VALUES ('"+nombre+"' , '"+dni+"' , '"+fecha+"' , '"+hora+"' , '"+sexo+"' , '"+descripcion+"') ;",
+    await  db.query("INSERT INTO difuntos (nombre , dni , fecha , hora , sexo , descripcion ) VALUES ('"+nombre+"' , '"+dni+"' , '"+fecha+"' , '"+hora+"' , '"+sexo+"' , '"+descripcion+"') ;",
    
     (err ,result) => {
        try{
@@ -32,5 +32,6 @@ router.post("/difunto" , (req , res ) => {
     )
     })
   
+   
 
 module.exports = router;

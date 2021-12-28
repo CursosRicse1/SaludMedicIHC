@@ -11,37 +11,19 @@ import { useState } from "react";
 import Axios from "axios";
 
 export default function DoctorMain() {
-  const {
-    register, //campos del formulario
-    handleSubmit, //funcion para enviar el formulario
-  } = useForm();
 
   let navigate = useNavigate();
+  const [tabla,setTabla] = useState([]);
+ 
+  Axios.get('/doctor/tabla')
+  .then((response) => {
+    setTabla(response.data);
+   
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
-  const handleFileChange = (e, field, setFile) => {
-    const _file = e.target.files[0];
-    setFile(_file);
-    setEnviar(_file);
-    register(field).onChange(e);
-  };
-
-  const [dato, setEnviar] = useState([]);
-  const [fileImage, setFileImage] = useState(null);
-
-  const enviarDato = () => {
-    console.log("entro a consulta");
-
-    const formData = new FormData();
-    formData.append("file", dato);
-    formData.append("upload_preset", "ipzowozi");
-    formData.append("cloud_name", "saludmedic");
-    Axios.post(
-      "https://api.cloudinary.com/v1_1/saludmedic/image/upload",
-      formData
-    ).then((response) => {
-      console.log(JSON.stringify(response, null, 4));
-    });
-  };
   return (
     <main className="flex flex-col items-center justify-center h-auto mt-4">
       <div className="w-11/12 md:w-4/6 lg:w-5/6 xl:w-7/12 pt-4">
@@ -85,12 +67,12 @@ export default function DoctorMain() {
           </div>
         </div>
         <PacienteTable>
-          <Row paciente="Juan" cama={true} fecha="22/08/2021" />
-          <Row paciente="Juan" cama={false} fecha="22/08/2021" />
-          <Row paciente="Juan" cama={true} fecha="22/08/2021" />
-          <Row paciente="Juan" cama={false} fecha="22/08/2021" />
-          <Row paciente="Juan" cama={true} fecha="22/08/2021" />
+        {tabla?.map((e) => (
+           <Row paciente={e.nombre} cama={e.estado} fecha={e.fecha} />
+          ))}
         </PacienteTable>
+       
+        
       </div>
     </main>
   );
