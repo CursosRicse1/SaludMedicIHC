@@ -8,7 +8,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+
 export default function RegisterScreen() {
+  
   let navigate = useNavigate();
 
   const schema = yup.object().shape({
@@ -28,13 +30,17 @@ export default function RegisterScreen() {
   });
 
   const registerForm = (data) => {
+    window.alert(data.nombre + '  registrado');
     navigate("/login");
     Axios.post("http://localhost:5000/auth", {
       codigo: data.codigo,
       dni: data.dni,
+      nombre : data.nombre,
+      apellido : data.apellido,
       password: data.password,
     }).then((response) => {
       console.log(response);
+      
     });
   };
 
@@ -82,15 +88,15 @@ export default function RegisterScreen() {
             name="nombre"
             label="Nombres"
             className="mb-3"
-            register={() => null}
-            //errors={errors.nombre}
+            register={register}
+            errors={errors.nombre}
           />
           <TextInput
             name="apellido"
             label="Apellidos"
             className="mb-3"
-            register={() => null}
-            //errors={errors.apellido}
+            register={register}
+            errors={errors.apellido}
           />
           <TextInput
             name="password"
@@ -100,7 +106,7 @@ export default function RegisterScreen() {
             register={register}
             errors={errors.password}
           />
-          <NavButton type="submit" variant="primary">
+          <NavButton  variant="primary" onClick = {() => {}}>
             Registrarse
           </NavButton>
           <div className="border-solid border-t mt-5 pt-3 text-gray-400 font-normal text-center">

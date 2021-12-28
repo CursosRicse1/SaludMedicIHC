@@ -22,7 +22,7 @@ export default function RegisterCard({ registro, estado, paciente }) {
         <span>{`Paciente: ${paciente}`}</span>
       </div>
       {registro && (
-        <NavButton className="mt-2" variant="primary">
+        <NavButton type="submit" className="mt-2" variant="primary">
           {" "}
           Registrar{" "}
         </NavButton>

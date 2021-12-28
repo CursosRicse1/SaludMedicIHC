@@ -7,11 +7,13 @@ const bcrypt = require('bcrypt');
 const saltRound = 10 ;
 
 //REGISTER
-router.post("/", (req, res) => {
+router.post("/",  (req, res) => {
   let reqBody = req.body;
   const codigo = reqBody.codigo;
   const dni = reqBody.dni;
   const password = reqBody.password;
+  const nombre = reqBody.nombre ;
+  const apellido = reqBody.apellido;
   
   bcrypt.hash(password , saltRound , (err , hash ) => {
     
@@ -20,9 +22,9 @@ router.post("/", (req, res) => {
       console.log("error")
     }
 
-    db.query(
-      "INSERT INTO prueba (codigo , dni , password) VALUES (? , ? , ?) ;",
-      [codigo, dni, hash],
+     db.query(
+      "INSERT INTO prueba (codigo , dni  ,nombre , apellido , password) VALUES (? , ? , ? , ? , ? ) ;",
+      [codigo, dni,nombre , apellido, hash],
       (err, result) => {
         try {
           if (err ){       

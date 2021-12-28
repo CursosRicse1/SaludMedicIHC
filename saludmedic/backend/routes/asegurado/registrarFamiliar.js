@@ -19,7 +19,7 @@ router.post("/registarFamiliar", (req, res) => {
   const direccion = reqBody.direccion;
   const telefono = reqBody.telefono;
   
-  db.query("INSERT INTO familiar (nombre , apellidos , codigo , dni , fecha , email ,direccion , telefono  ) VALUES ( '"+nombre+"' , '"+apellidos+"' , '"+codigo+"' , '"+dni+"' , '"+fecha+"' , '"+email+"' , '"+direccion+"' , '"+telefono+"') ",
+ db.query("INSERT INTO familiar (nombre , apellidos , codigo , dni , fecha , email ,direccion , telefono  ) VALUES ( '"+nombre+"' , '"+apellidos+"' , '"+codigo+"' , '"+dni+"' , '"+fecha+"' , '"+email+"' , '"+direccion+"' , '"+telefono+"') ",
     (err ,result) => {
         try{
            

@@ -2,7 +2,7 @@ import RegisterCard from "components/Card/RegisterCard";
 import Medical from "components/icons/Medical";
 import NavButton from "components/Buttons/NavButton";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Axios from "axios";
 
 export default function CamasScreen() {
