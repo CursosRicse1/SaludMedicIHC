@@ -7,11 +7,13 @@ import { BgImage } from "pages/login";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-
+import { useState } from "react";
+import VisibilityOff from "components/icons/VisibilityOff";
+import VisibilityOn from "components/icons/VisibilityOn";
 
 export default function RegisterScreen() {
-  
   let navigate = useNavigate();
+  const [visible, setVisible] = useState(false);
 
   const schema = yup.object().shape({
     codigo: yup.string().required("Es un campo requerido."),
@@ -30,17 +32,16 @@ export default function RegisterScreen() {
   });
 
   const registerForm = (data) => {
-    window.alert(data.nombre + '  registrado');
+    window.alert(data.nombre + "  registrado");
     navigate("/login");
     Axios.post("http://localhost:5000/auth", {
       codigo: data.codigo,
       dni: data.dni,
-      nombre : data.nombre,
-      apellido : data.apellido,
+      nombre: data.nombre,
+      apellido: data.apellido,
       password: data.password,
     }).then((response) => {
       console.log(response);
-      
     });
   };
 
@@ -98,15 +99,28 @@ export default function RegisterScreen() {
             register={register}
             errors={errors.apellido}
           />
-          <TextInput
-            name="password"
-            type="password"
-            label="Contraseña"
-            className="mb-3"
-            register={register}
-            errors={errors.password}
-          />
-          <NavButton  variant="primary" onClick = {() => {}}>
+          <div className="relative flex flex-col justify-center">
+            <TextInput
+              name="password"
+              type={!visible ? "password" : "text"}
+              label="Contraseña"
+              className="mb-3"
+              register={register}
+              errors={errors.password}
+            />
+            {!visible ? (
+              <VisibilityOn
+                className={`absolute right-[4%] top-10 fill-current text-gray-500 cursor-pointer`}
+                onClick={() => setVisible(!visible)}
+              />
+            ) : (
+              <VisibilityOff
+                className={`absolute right-[4%] top-10 fill-current text-gray-500 cursor-pointer`}
+                onClick={() => setVisible(!visible)}
+              />
+            )}
+          </div>
+          <NavButton variant="primary" onClick={() => {}}>
             Registrarse
           </NavButton>
           <div className="border-solid border-t mt-5 pt-3 text-gray-400 font-normal text-center">
@@ -123,20 +137,3 @@ export default function RegisterScreen() {
     </main>
   );
 }
-/* <input
-    type="text"
-    onChange={(e) => {
-      setApellidoReg(e.target.value);
-    }}
-  />
-  <label>codigo</label>
-  <input
-    type="text"
-    name="code"
-    onChange={(e) => {
-      setCodigoReg(e.target.value);
-    }}
-  />
-  <button className="block border-2" onClick={register}>
-    <Link to="/login">Registrar</Link>
-  </button> */

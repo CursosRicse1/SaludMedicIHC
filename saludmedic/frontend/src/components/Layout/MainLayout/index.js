@@ -33,7 +33,7 @@ export default function MainLayout() {
         </Link>
         <div className="flex flex-row items-center">
           <UserVariant className="w-9 h-9 rounded-full border-2 border-green-600" />
-          <span className="pl-2 font-medium text-white">{user?.codigo}</span>
+          <span className="pl-2 font-medium text-white">{user?.nombre}</span>
           <button className="w-8 h-8 ml-3" onClick={logout}>
             <Logout className="w-8 h-8 p-1 fill-current text-white rounded-full transition ease-in duration-200 hover:text-red-500 cursor-pointer hover:bg-red-200" />
           </button>

@@ -86,11 +86,11 @@ export default function Noticias() {
           </div>
         </div>
       </div>
-      <div className="w-full flex justify-center space-x-3 hover:underline cursor-pointer font-semibold">
-        <div className="rounded-full bg-green-500 hover:bg-green-800">
+      <div className="group w-full flex justify-center space-x-3 cursor-pointer font-semibold">
+        <div className="rounded-full bg-green-500 group-hover:bg-green-800">
           <Expand className="fill-current text-white" />
         </div>
-        <span>Ver más</span>
+        <span className="group-hover:underline">Ver más</span>
       </div>
       <footer className="relative bg-blueGray-50">
         <div className="container mx-auto px-4">
