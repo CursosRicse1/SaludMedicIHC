@@ -12,15 +12,15 @@ export default function AseguradoMain() {
   let navigate = useNavigate();
   const [especial1, setNombre] = useState([]);
   const [especial2, setNombre2] = useState([]);
- 
-  Axios.get("http://localhost:5000/especialista")
+  let Url = process.env.REACT_PORT || 'http://localhost:5000';
+  Axios.get(`${Url}/especialista`)
     .then((response) => {
       setNombre(response.data);
     })
     .catch((err) => {
       console.log(err);
     });
-  Axios.get("http://localhost:5000/especialidad")
+  Axios.get(`${Url}/especialidad`)
     .then((response) => {
       setNombre2(response.data);
       

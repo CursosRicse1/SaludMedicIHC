@@ -13,8 +13,8 @@ import Axios from "axios";
 export default function DoctorMain() {
   let navigate = useNavigate();
   const [tabla, setTabla] = useState([]);
-
-  Axios.get("/doctor/tabla")
+  let Url = process.env.REACT_PORT || 'http://localhost:5000';
+  Axios.get(`${Url}/doctor/tabla`)
     .then((response) => {
       setTabla(response.data);
     })

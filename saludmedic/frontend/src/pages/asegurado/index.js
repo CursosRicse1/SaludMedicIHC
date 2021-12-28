@@ -11,8 +11,9 @@ export default function AseguradoScreen() {
   const { register, handleSubmit } = useForm();
   let navigate = useNavigate();
   const [codigo, setCodigo] = useState("");
-
-  Axios.get("http://localhost:5000/auth/login").then((response) => {
+  let Url = process.env.REACT_PORT || 'http://localhost:5000';
+ 
+  Axios.get(`${Url}/auth/login`).then((response) => {
     if (response.data.loggedIn === true) {
       setCodigo(response.data.user[0].codigo);
     }
@@ -21,7 +22,7 @@ export default function AseguradoScreen() {
   const registerCita = (data) => {
     window.alert("enviado");
     console.log(data);
-    Axios.post("http://localhost:5000/asegurado/registarFamiliar", {
+    Axios.post(`${Url}/asegurado/registarFamiliar`, {
       maca: codigo,
       nombres: data.nombres,
       apellidos: data.apellidos,

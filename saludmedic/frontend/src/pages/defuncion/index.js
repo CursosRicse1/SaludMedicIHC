@@ -8,12 +8,15 @@ import { useForm } from "react-hook-form";
 import Select from "components/Select";
 import Axios from "axios";
 export default function DefuncionScreen() {
+
+  let Url = process.env.REACT_PORT || 'http://localhost:5000';
+
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const registerDifunto = (data) => {
     window.alert("enviado");
     console.log(data);
-    Axios.post("http://localhost:5000/doctor/difunto", {
+    Axios.post(`${Url}/doctor/difunto`, {
       nombre: data.nombre,
       codigo: data.codigo,
       dni: data.dni,

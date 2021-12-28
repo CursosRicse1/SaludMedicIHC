@@ -14,7 +14,7 @@ import VisibilityOn from "components/icons/VisibilityOn";
 export default function RegisterScreen() {
   let navigate = useNavigate();
   const [visible, setVisible] = useState(false);
-
+  let Url = process.env.REACT_PORT || 'http://localhost:5000';
   const schema = yup.object().shape({
     codigo: yup.string().required("Es un campo requerido."),
     dni: yup.string().required("Es un campo requerido."),
@@ -34,7 +34,7 @@ export default function RegisterScreen() {
   const registerForm = (data) => {
     window.alert(data.nombre + "  registrado");
     navigate("/login");
-    Axios.post("http://localhost:5000/auth", {
+    Axios.post(`${Url}/auth`, {
       codigo: data.codigo,
       dni: data.dni,
       nombre: data.nombre,
@@ -120,7 +120,7 @@ export default function RegisterScreen() {
               />
             )}
           </div>
-          <NavButton variant="primary" onClick={() => {}}>
+          <NavButton variant="primary" type = "submit" >
             Registrarse
           </NavButton>
           <div className="border-solid border-t mt-5 pt-3 text-gray-400 font-normal text-center">

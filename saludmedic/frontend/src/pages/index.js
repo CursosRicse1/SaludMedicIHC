@@ -4,7 +4,7 @@ import Home from "pages/home";
 
 export default function HomeScreen() {
   const [loading, setLoading] = useState(false);
-
+  
   useEffect(() => {
     try {
       setLoading(true);

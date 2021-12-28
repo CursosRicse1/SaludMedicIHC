@@ -22,7 +22,8 @@ require('dotenv').config();
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [reload, setReload] = useState(false);
-
+  let Url = process.env.REACT_PORT || 'http://localhost:5000';
+ 
   useEffect(() => {
     if (!isLoggedIn) {
       setInterval(login, 1000);
@@ -30,7 +31,7 @@ function App() {
   }, [isLoggedIn, reload]);
 
   async function login() {
-    await Axios.get("http://localhost:5000/auth/login").then((res) => {
+    await Axios.get(`${Url}/auth/login`).then((res) => {
       if (res.data.loggedIn === true) {
         setIsLoggedIn(true);
       } else {
@@ -39,7 +40,7 @@ function App() {
       }
     });
   }
-
+console.log(process.env.REACT_PORT)
   return (
     <BrowserRouter>
       <header>{isLoggedIn ? <MainLayout /> : <LandingLayout />}</header>

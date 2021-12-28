@@ -1,9 +1,9 @@
 module.exports = {
   purge: [
-    "./src/**/*.{js,jsx,ts,tsx}",
+    "./src/**/*.{js,jsx,ts,tsx ,env}",
     "./public/index.html",
-    "./components/**/*.{js,jsx,ts,tsx}",
-    "./pages/**/*.{js,jsx,ts,tsx}",
+    "./components/**/*.{js,jsx,ts,tsx , env}",
+    "./pages/**/*.{js,jsx,ts,tsx ,env}",
   ],
   mode: "jit",
   darkMode: false, // or 'media' or 'class'

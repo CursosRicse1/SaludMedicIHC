@@ -13,14 +13,14 @@ require('dotenv').config();
 
 
 export default function Atencion() {
-  
-  console.log(process.env.REACT_PORT)
+  let Url = process.env.REACT_PORT || 'http://localhost:5000';
+ 
   const { register, handleSubmit } = useForm();
   let navigate = useNavigate();
   const [combo, setCombo] = useState([]);
   const [nombre, setNombre] = useState([]);
 
-  Axios.get(`http://localhost:5000/registrados`)
+  Axios.get(`${Url}/registrados`)
     .then((response) => {
       setNombre(response.data);
     })
@@ -28,7 +28,7 @@ export default function Atencion() {
       console.log(err);
     });
 
-  Axios.get("http://localhost:5000/especialidad")
+  Axios.get(`${Url}/especialidad`)
     .then((response) => {
       setCombo(response.data);
     })
@@ -39,7 +39,7 @@ export default function Atencion() {
   const registerCita = (data) => {
     window.alert("enviado");
     console.log(data);
-    Axios.post("http://localhost:5000/asegurado/cita", {
+    Axios.post(`${Url}/asegurado/cita`, {
       nombre: data.nombre,
       especialidad: data.especialidad,
       fecha: data.fecha,

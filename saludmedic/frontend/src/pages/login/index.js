@@ -16,7 +16,7 @@ export const BgImage =
 export default function SigninScreen() {
   let navigate = useNavigate();
   const [visible, setVisible] = useState(false);
-
+  let Url = process.env.REACT_PORT || 'http://localhost:5000';
   //make a schema
   const schema = yup.object().shape({
     codigo: yup.string().required("Es un campo requerido."),
@@ -38,7 +38,7 @@ export default function SigninScreen() {
     navigate("/main");
     console.log(data);
 
-    Axios.post("http://localhost:5000/auth/login", {
+    Axios.post(`${Url}/auth/login`, {
       codigo: data.codigo,
 
       password: data.password,
@@ -47,7 +47,7 @@ export default function SigninScreen() {
     });
   };
   useEffect(() => {
-    Axios.get("http://localhost:5000/auth/login").then((response) => {
+    Axios.get(`${Url}/auth/login`).then((response) => {
       console.log(response);
     });
   }, []);

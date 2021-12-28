@@ -8,15 +8,10 @@ import Axios from "axios";
 export default function CamasScreen() {
   const navigate = useNavigate();
   const [card, setCard] = useState([]);
+  let Url = process.env.REACT_PORT || 'http://localhost:5000';
+ 
 
-  // const Camas = (data) => {
-  //   Axios.get("http://localhost:5000/api/sendCamas").then((response) => {
-  //     setCard(response.data);
-  //     console.log(response);
-  //   });
-  // };
-
-  Axios.get("http://localhost:5000/api/sendCamas").then((response) => {
+  Axios.get(`${Url}/api/sendCamas`).then((response) => {
     setCard(response.data);
   });
 

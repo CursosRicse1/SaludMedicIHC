@@ -11,12 +11,12 @@ export default function RegistarPacienteScreen() {
   const { register, handleSubmit } = useForm();
   const [paciente, setPaciente] = useState([]);
   
- 
+  let Url = process.env.REACT_PORT || 'http://localhost:5000';
 
   const enviarDatos = (data)=> {
     window.alert("enviado");
     console.log(data);
-    Axios.post("http://localhost:5000/doctor/registroPaciente", {
+    Axios.post(`${Url}/doctor/registroPaciente`, {
       id : data.id
     }).then((response) => {
       console.log(response)
@@ -25,7 +25,7 @@ export default function RegistarPacienteScreen() {
   }
 
 
-  Axios.get("http://localhost:5000/doctor/pacientes")
+  Axios.get(`${Url}/doctor/pacientes`)
   .then((response) => {
     setPaciente(response.data);
    
