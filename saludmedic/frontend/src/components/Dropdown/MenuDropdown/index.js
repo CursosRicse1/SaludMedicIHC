@@ -13,7 +13,7 @@ export default function DropDown({ className }) {
       className={`absolute w-full text-center items-center bg-gray-900 bg-opacity-70 backdrop-filter backdrop-blur-lg z-10 ${className}`}
     >
       <div className="flex flex-col p-4">
-        <Link className={variants["primary"]} to="/noticas">
+        <Link className={variants["primary"]} to="/noticias">
           Noticias
         </Link>
         <Link className={variants["primary"]} to="/informacion">

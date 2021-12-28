@@ -1,4 +1,4 @@
-export default function NavButton({
+export default function IconButton({
   children,
   variant,
   className,
@@ -27,7 +27,7 @@ export default function NavButton({
       onClick={onClick}
       className={`${types[variant]} font-bold rounded-md px-7 py-1  ${className}`}
     >
-      <span className="flex flex-row items-center justify-center">
+      <span className="flex xl:flex-col items-center justify-center">
         {children}
       </span>
     </button>

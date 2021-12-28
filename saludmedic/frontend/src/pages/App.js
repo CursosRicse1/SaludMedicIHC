@@ -15,6 +15,8 @@ import AseguradoScreen from "./asegurado";
 import CamasScreen from "./camasUsuario";
 import RegistarPacienteScreen from "./registrarPacientes";
 import AseguradoMain from "./aseguradoMain";
+import Informacion from "./informacion";
+import Noticias from "./noticias";
 import DoctorMain from "./doctorMain";
 
 function App() {
@@ -56,6 +58,8 @@ function App() {
         <Route path="/main/defuncion" element={<DefuncionScreen />} />
         <Route path="/asegurado-main" element={<AseguradoMain />} />
         <Route path="/doctor-main" element={<DoctorMain />} />
+        <Route path="/informacion" element={<Informacion />} />
+        <Route path="/noticias" element={<Noticias />} />
         <Route path="*" element={<ErrorScreen />} />
       </Routes>
     </BrowserRouter>
