@@ -8,13 +8,13 @@ import "react-calendar/dist/Calendar.css";
 import Axios from "axios";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-
+require('dotenv').config();
 
 
 
 export default function Atencion() {
-  require('dotenv').config();
-  console.log(process.env.PORT)
+  
+  console.log(process.env.REACT_PORT)
   const { register, handleSubmit } = useForm();
   let navigate = useNavigate();
   const [combo, setCombo] = useState([]);

@@ -36,7 +36,7 @@ export default function LandingLayout() {
           </Link>
           <ul className="hidden md:flex flex-row space-x-12 items-center">
             <Link to="/informacion">
-              <li className={variants["primary"]}>
+              <li title="Nosotros" className={variants["primary"]}>
                 {/* <Info className="w-9 h-9" /> */}
                 <span className="transition duration-500 group-hover:text-blue-500 hidden lg:flex">
                   Nosotros
@@ -45,7 +45,7 @@ export default function LandingLayout() {
               </li>
             </Link>
             <Link to="/noticias">
-              <li className={variants["primary"]}>
+              <li title="Noticias" className={variants["primary"]}>
                 {/* <News className="w-9 h-9" /> */}
                 <span className="transition duration-500 group-hover:text-blue-500 hidden lg:flex">
                   Noticias

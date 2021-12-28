@@ -1,5 +1,5 @@
 import Axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import TextInput from "components/TextInput";
 import NavButton from "components/Buttons/NavButton";
@@ -7,12 +7,15 @@ import Logo from "components/icons/Logo";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import VisibilityOff from "components/icons/VisibilityOff";
+import VisibilityOn from "components/icons/VisibilityOn";
 
 export const BgImage =
   "https://static.wixstatic.com/media/273aed_8e7a3dfed47f4765ae5deeab1a8dd1df~mv2.jpg/v1/fill/w_1920,h_1080,al_c/273aed_8e7a3dfed47f4765ae5deeab1a8dd1df~mv2.jpg";
 
 export default function SigninScreen() {
   let navigate = useNavigate();
+  const [visible, setVisible] = useState(false);
 
   //make a schema
   const schema = yup.object().shape({
@@ -71,14 +74,27 @@ export default function SigninScreen() {
             register={register}
             errors={errors.codigo}
           />
-          <TextInput
-            name="password"
-            type="password"
-            label="Contraseña"
-            className="mb-3"
-            register={register}
-            errors={errors.password}
-          />
+          <div className="relative flex flex-col justify-center">
+            <TextInput
+              name="password"
+              type={!visible ? "password" : "text"}
+              label="Contraseña"
+              className="mb-3"
+              register={register}
+              errors={errors.password}
+            />
+            {!visible ? (
+              <VisibilityOn
+                className={`absolute right-[4%] top-10 fill-current text-gray-500 cursor-pointer`}
+                onClick={() => setVisible(!visible)}
+              />
+            ) : (
+              <VisibilityOff
+                className={`absolute right-[4%] top-10 fill-current text-gray-500 cursor-pointer`}
+                onClick={() => setVisible(!visible)}
+              />
+            )}
+          </div>
           <NavButton variant="primary" type="submit">
             Ingresar
           </NavButton>

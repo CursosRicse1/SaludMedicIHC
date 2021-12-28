@@ -18,7 +18,7 @@ import AseguradoMain from "./aseguradoMain";
 import Informacion from "./informacion";
 import Noticias from "./noticias";
 import DoctorMain from "./doctorMain";
-
+require('dotenv').config();
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [reload, setReload] = useState(false);
