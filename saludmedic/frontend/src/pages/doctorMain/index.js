@@ -11,18 +11,16 @@ import { useState } from "react";
 import Axios from "axios";
 
 export default function DoctorMain() {
-
   let navigate = useNavigate();
-  const [tabla,setTabla] = useState([]);
- 
-  Axios.get('/doctor/tabla')
-  .then((response) => {
-    setTabla(response.data);
-   
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+  const [tabla, setTabla] = useState([]);
+
+  Axios.get("/doctor/tabla")
+    .then((response) => {
+      setTabla(response.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
   return (
     <main className="flex flex-col items-center justify-center h-auto mt-4">
@@ -67,12 +65,14 @@ export default function DoctorMain() {
           </div>
         </div>
         <PacienteTable>
-        {tabla?.map((e) => (
-           <Row paciente={e.nombre} cama={e.estado} fecha={e.fecha} />
+          {tabla?.map((e) => (
+            <Row
+              paciente={e.nombre}
+              cama={e.estado}
+              fecha={`${e.fecha} - ${e.hora}`}
+            />
           ))}
         </PacienteTable>
-       
-        
       </div>
     </main>
   );

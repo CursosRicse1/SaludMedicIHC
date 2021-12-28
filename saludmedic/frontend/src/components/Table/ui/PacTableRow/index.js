@@ -25,7 +25,7 @@ export default function PacRowTable({ paciente, cama, fecha }) {
         </div>
       </td>
       <td className={bodyStyle}>
-        <span className={spanStyle}>Fecha</span>
+        <span className={spanStyle}>Fecha y hora</span>
         {fecha}
       </td>
     </tr>

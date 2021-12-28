@@ -8,7 +8,7 @@ export default function PacienteTable({ children }) {
         <tr>
           <th className={headerStyle}>Paciente</th>
           <th className={headerStyle}>Cama</th>
-          <th className={headerStyle}>Fecha</th>
+          <th className={headerStyle}>Fecha y hora</th>
         </tr>
       </thead>
       <tbody>{children}</tbody>
