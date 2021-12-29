@@ -26,7 +26,7 @@ function App() {
  
   useEffect(() => {
     if (!isLoggedIn) {
-      setInterval(login, 1000);
+      setInterval(login, 800);
     }
   }, [isLoggedIn, reload]);
 

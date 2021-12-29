@@ -110,14 +110,14 @@ export default function AseguradoScreen() {
             </div>
           </div>
           <div className="flex justify-center space-x-3 my-4">
-            <NavButton variant="primary" type="submit">
+            <NavButton variant="primary" type="submit" onClick = {()=> {navigate('/asegurado-main')}}>
               Registrar
             </NavButton>
             <NavButton
               variant="secondary"
               type="submit"
               onClick={() => {
-                navigate("/main");
+                navigate("/asegurado-main");
               }}
             >
               Volver

@@ -81,7 +81,7 @@ export default function RegistarPacienteScreen() {
           <div className="flex justify-center py-3">
             <NavButton
               variant="secondary"
-              onClick={() => navigate("/main")}
+              onClick={() => navigate("/doctor-main")}
             >
               Volver
             </NavButton>

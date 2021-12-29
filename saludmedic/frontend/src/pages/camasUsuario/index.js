@@ -35,7 +35,7 @@ export default function CamasScreen() {
           </div>
           {/* 3ero */}
           <div className="flex justify-center py-3">
-            <NavButton variant="secondary" onClick={() => navigate("/main")}>
+            <NavButton variant="secondary" onClick={() => navigate("/asegurado-main")}>
               Volver
             </NavButton>
           </div>

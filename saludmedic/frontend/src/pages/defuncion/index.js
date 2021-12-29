@@ -105,14 +105,14 @@ export default function DefuncionScreen() {
             />
           </div>
           <div className="w-full flex flex-row justify-center space-x-6 col-span-4">
-            <NavButton variant="primary" type="submit">
+            <NavButton variant="primary" type="submit" onClick = {()=> {navigate('/doctor-main')}}>
               Enviar
             </NavButton>
             <NavButton
               variant="secondary"
               type="submit"
               onClick={() => {
-                navigate("/main");
+                navigate("/doctor-main");
               }}
             >
               Volver

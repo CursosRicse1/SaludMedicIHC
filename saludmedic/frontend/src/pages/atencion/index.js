@@ -116,13 +116,13 @@ export default function Atencion() {
               />
             </div>
             <div className="w-full flex flex-row justify-center space-x-6 py-3 ">
-              <Button variant="primary" register={register} type="submit">
+              <Button variant="primary" register={register} type="submit" onClick= {()=>{ navigate('/asegurado-main') }}>
                 Reservar
               </Button>
               <Button
                 variant="secondary"
                 onClick={() => {
-                  navigate("/main");
+                  navigate("/asegurado-main");
                 }}
               >
                 Volver

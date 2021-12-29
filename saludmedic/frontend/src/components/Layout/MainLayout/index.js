@@ -8,14 +8,14 @@ import { useState, useEffect } from "react";
 export default function MainLayout() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
-
+  let Url = process.env.REACT_PORT || 'http://34.74.224.156:5000';
   const logout = () => {
-    Axios.post("http://34.74.224.156/logout").then(navigate("/login"));
+    Axios.post(`http://${Url}/logout`).then(navigate("/login"));
     setUser(null);
   };
 
   useEffect(() => {
-    Axios.get("http://34.74.224.156/auth/login").then((res) => {
+    Axios.get(`http://${Url}/auth/login`).then((res) => {
       console.log(res.data);
       setUser(res.data.user[0]);
     });
