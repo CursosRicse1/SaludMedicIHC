@@ -24,7 +24,7 @@ const puertoF = process.env.PORTF || 3000;
 app.use(express.json());
 app.use(
   cors({
-    origin: [`http://35.215.208.246:${puertoF}` ],
+    origin: [`http://34.74.224.156:${puertoF}` ],
     methods: ["GET", "POST"],
     credentials: true,
   })
@@ -197,6 +197,6 @@ app.get("/doctor/tabla" , async(req , res) => {
 
 
 app.listen(process.env.PORT,  () =>{
-      const puerto=  `servidor operando http://35.215.208.246:${process.env.PORT}`
+      const puerto=  `servidor operando http://34.74.224.156:${process.env.PORT}`
 	console.log(puerto)
   });
