@@ -11,8 +11,8 @@ export default function AseguradoScreen() {
   const { register, handleSubmit } = useForm();
   let navigate = useNavigate();
   const [codigo, setCodigo] = useState("");
-  let Url = process.env.REACT_PORT || 'http://34.74.224.156:5000';
- 
+  let Url = process.env.REACT_PORT || "http://34.74.224.156:5000";
+
   Axios.get(`${Url}/auth/login`).then((response) => {
     if (response.data.loggedIn === true) {
       setCodigo(response.data.user[0].codigo);
@@ -23,7 +23,7 @@ export default function AseguradoScreen() {
     window.alert("enviado");
     console.log(data);
     Axios.post(`${Url}/asegurado/registarFamiliar`, {
-      maca: codigo,
+      codigo: codigo,
       nombres: data.nombres,
       apellidos: data.apellidos,
       dni: data.dni,
@@ -110,7 +110,13 @@ export default function AseguradoScreen() {
             </div>
           </div>
           <div className="flex justify-center space-x-3 my-4">
-            <NavButton variant="primary" type="submit" onClick = {()=> {navigate('/asegurado-main')}}>
+            <NavButton
+              variant="primary"
+              type="submit"
+              onClick={() => {
+                navigate("/asegurado-main");
+              }}
+            >
               Registrar
             </NavButton>
             <NavButton
