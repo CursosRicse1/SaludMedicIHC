@@ -18,15 +18,15 @@ import AseguradoMain from "./aseguradoMain";
 import Informacion from "./informacion";
 import Noticias from "./noticias";
 import DoctorMain from "./doctorMain";
-require('dotenv').config();
+require("dotenv").config();
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [reload, setReload] = useState(false);
-  let Url = process.env.REACT_PORT || 'http://34.74.224.156:5000';
- 
+  let Url = process.env.REACT_PORT || "http://34.74.224.156:5000";
+
   useEffect(() => {
     if (!isLoggedIn) {
-      setInterval(login, 800);
+      setInterval(login, 1000);
     }
   }, [isLoggedIn, reload]);
 
@@ -40,7 +40,7 @@ function App() {
       }
     });
   }
-console.log(process.env.REACT_PORT)
+  console.log(process.env.REACT_PORT);
   return (
     <BrowserRouter>
       <header>{isLoggedIn ? <MainLayout /> : <LandingLayout />}</header>

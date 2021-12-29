@@ -16,7 +16,7 @@ export const BgImage =
 export default function SigninScreen() {
   let navigate = useNavigate();
   const [visible, setVisible] = useState(false);
-  let Url = process.env.REACT_PORT || 'http://34.74.224.156:5000';
+  let Url = process.env.REACT_PORT || "http://34.74.224.156:5000";
   //make a schema
   const schema = yup.object().shape({
     codigo: yup.string().required("Es un campo requerido."),
@@ -40,17 +40,30 @@ export default function SigninScreen() {
 
     Axios.post(`${Url}/auth/login`, {
       codigo: data.codigo,
-
       password: data.password,
     }).then((response) => {
       console.log(response);
     });
   };
+
   useEffect(() => {
-    Axios.get(`${Url}/auth/login`).then((response) => {
-      console.log(response);
-    });
+    Axios.get(`${Url}/auth/login`)
+      .then(function (response) {
+        if (response.status >= 400) {
+          throw new Error("error en el server");
+        }
+        return response.json();
+      })
+      .then(function (data) {
+        if (data.loggedIn === "true") {
+          console.log("usuario entro");
+        }
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
   }, []);
+
   return (
     <main
       className="h-almost-screen flex justify-center items-center bg-gray-700"
