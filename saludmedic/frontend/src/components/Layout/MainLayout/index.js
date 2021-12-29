@@ -10,12 +10,12 @@ export default function MainLayout() {
   const [user, setUser] = useState(null);
   let Url = process.env.REACT_PORT || 'http://34.74.224.156:5000';
   const logout = () => {
-    Axios.post(`http://${Url}/logout`).then(navigate("/login"));
+    Axios.post(`${Url}/logout`).then(navigate("/login"));
     setUser(null);
   };
 
   useEffect(() => {
-    Axios.get(`http://${Url}/auth/login`).then((res) => {
+    Axios.get(`${Url}/auth/login`).then((res) => {
       console.log(res.data);
       setUser(res.data.user[0]);
     });
@@ -33,7 +33,7 @@ export default function MainLayout() {
         </Link>
         <div className="flex flex-row items-center">
           <UserVariant className="w-9 h-9 rounded-full border-2 border-green-600" />
-          <span className="pl-2 font-medium text-white">{user?.nombre}</span>
+          <span className="pl-2 font-medium text-white">{user?.codigo}</span>
           <button className="w-8 h-8 ml-3" onClick={logout}>
             <Logout className="w-8 h-8 p-1 fill-current text-white rounded-full transition ease-in duration-200 hover:text-red-500 cursor-pointer hover:bg-red-200" />
           </button>
