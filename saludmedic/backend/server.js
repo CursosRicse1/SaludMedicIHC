@@ -197,8 +197,6 @@ app.get("/doctor/tabla" , async(req , res) => {
 
 
 app.listen(process.env.PORT,  () =>{
-  const puerto=  `servidor operando http://localhost:${process.env.PORT}`;
-    
+      const puerto=  `servidor operando https://35.215.208.246:${process.env.PORT}`
+	console.log(puerto)
   });
-
-
