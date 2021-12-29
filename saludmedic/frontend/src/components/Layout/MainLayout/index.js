@@ -10,12 +10,12 @@ export default function MainLayout() {
   const [user, setUser] = useState(null);
 
   const logout = () => {
-    Axios.post("http://localhost:5000/logout").then(navigate("/login"));
+    Axios.post("http://34.74.224.156/logout").then(navigate("/login"));
     setUser(null);
   };
 
   useEffect(() => {
-    Axios.get("http://localhost:5000/auth/login").then((res) => {
+    Axios.get("http://34.74.224.156/auth/login").then((res) => {
       console.log(res.data);
       setUser(res.data.user[0]);
     });
