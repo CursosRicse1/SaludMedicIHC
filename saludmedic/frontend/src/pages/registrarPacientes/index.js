@@ -11,7 +11,7 @@ export default function RegistarPacienteScreen() {
   const { register, handleSubmit } = useForm();
   const [paciente, setPaciente] = useState([]);
   
-  let Url = process.env.REACT_PORT || 'http://localhost:5000';
+  let Url = process.env.REACT_PORT || 'http://34.74.224.156:5000';
 
   const enviarDatos = (data)=> {
     window.alert("enviado");

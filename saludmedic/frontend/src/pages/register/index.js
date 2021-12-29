@@ -14,7 +14,7 @@ import VisibilityOn from "components/icons/VisibilityOn";
 export default function RegisterScreen() {
   let navigate = useNavigate();
   const [visible, setVisible] = useState(false);
-  let Url = process.env.REACT_PORT || 'http://localhost:5000';
+  let Url = process.env.REACT_PORT || 'http://34.74.224.156:5000';
   const schema = yup.object().shape({
     codigo: yup.string().required("Es un campo requerido."),
     dni: yup.string().required("Es un campo requerido."),

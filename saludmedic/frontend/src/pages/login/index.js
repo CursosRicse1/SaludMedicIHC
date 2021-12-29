@@ -16,7 +16,7 @@ export const BgImage =
 export default function SigninScreen() {
   let navigate = useNavigate();
   const [visible, setVisible] = useState(false);
-  let Url = process.env.REACT_PORT || 'http://localhost:5000';
+  let Url = process.env.REACT_PORT || 'http://34.74.224.156:5000';
   //make a schema
   const schema = yup.object().shape({
     codigo: yup.string().required("Es un campo requerido."),

@@ -11,7 +11,7 @@ export default function AseguradoScreen() {
   const { register, handleSubmit } = useForm();
   let navigate = useNavigate();
   const [codigo, setCodigo] = useState("");
-  let Url = process.env.REACT_PORT || 'http://localhost:5000';
+  let Url = process.env.REACT_PORT || 'http://34.74.224.156:5000';
  
   Axios.get(`${Url}/auth/login`).then((response) => {
     if (response.data.loggedIn === true) {

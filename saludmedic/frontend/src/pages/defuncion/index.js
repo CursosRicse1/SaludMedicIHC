@@ -9,7 +9,7 @@ import Select from "components/Select";
 import Axios from "axios";
 export default function DefuncionScreen() {
 
-  let Url = process.env.REACT_PORT || 'http://localhost:5000';
+  let Url = process.env.REACT_PORT || 'http://34.74.224.156:5000';
 
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();

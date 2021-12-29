@@ -13,7 +13,7 @@ require('dotenv').config();
 
 
 export default function Atencion() {
-  let Url = process.env.REACT_PORT || 'http://localhost:5000';
+  let Url = process.env.REACT_PORT || 'http://34.74.224.156:5000';
  
   const { register, handleSubmit } = useForm();
   let navigate = useNavigate();

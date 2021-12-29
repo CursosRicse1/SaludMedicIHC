@@ -7,7 +7,7 @@ import DoctorMain from "pages/doctorMain";
 export default function MainScreen() {
   const [rol, setRole] = useState("");
   const [reloadUser, setReloadUser] = useState(false);
-  let Url = process.env.REACT_PORT || 'http://localhost:5000';
+  let Url = process.env.REACT_PORT || 'http://34.74.224.156:5000';
 
   useEffect(() => {
     setInterval(login, 500);
