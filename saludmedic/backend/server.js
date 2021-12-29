@@ -24,7 +24,7 @@ const puertoF = process.env.PORTF || 3000;
 app.use(express.json());
 app.use(
   cors({
-    origin: [`http://localhost:${puertoF}` ],
+    origin: [`http://35.215.208.246:${puertoF}` ],
     methods: ["GET", "POST"],
     credentials: true,
   })
