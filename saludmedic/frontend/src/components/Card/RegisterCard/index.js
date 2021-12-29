@@ -19,7 +19,7 @@ export default function RegisterCard({ registro, estado, paciente }) {
             {` ${estado ? "En uso" : "Disponible"}`}
           </span>
         </span>
-        <span>{`Paciente: ${paciente}`}</span>
+        <span>{`Paciente: ${paciente ? paciente : "- - -"}`}</span>
       </div>
       {registro && (
         <NavButton type="submit" className="mt-2" variant="primary">

@@ -3,46 +3,40 @@ import Select from "components/Select";
 import Mask from "components/icons/Mask";
 import NavButton from "components/Buttons/NavButton";
 import { useNavigate } from "react-router-dom";
-import React , {useState} from 'react'
-import Axios from 'axios';
+import React, { useState } from "react";
+import Axios from "axios";
 import { useForm } from "react-hook-form";
 
 export default function RegistarPacienteScreen() {
   const { register, handleSubmit } = useForm();
   const [paciente, setPaciente] = useState([]);
-  
- 
 
-  const enviarDatos = (data)=> {
+  const enviarDatos = (data) => {
     window.alert("enviado");
     console.log(data);
     Axios.post("http://localhost:5000/doctor/registroPaciente", {
-      id : data.id
+      id: data.id,
     }).then((response) => {
-      console.log(response)
+      console.log(response);
       window.alert("Enviado correctamente");
     });
-  }
-
+  };
 
   Axios.get("http://localhost:5000/doctor/pacientes")
-  .then((response) => {
-    setPaciente(response.data);
-   
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+    .then((response) => {
+      setPaciente(response.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
-  
-
-  function  sendNombre(a) {
-      return {
-      value : a.id,
+  function sendNombre(a) {
+    return {
+      value: a.id,
       label: a.nombre,
     };
   }
-  
+
   const navigate = useNavigate();
 
   return (
@@ -56,33 +50,30 @@ export default function RegistarPacienteScreen() {
             Registrar pacientes
           </span>
         </div>
-        <form onSubmit={handleSubmit(enviarDatos)} className="flex flex-col bg-[#F5F7FB] rounded-lg border-solid border p-4 h-[90%]">
+        <form
+          onSubmit={handleSubmit(enviarDatos)}
+          className="flex flex-col bg-[#F5F7FB] rounded-lg border-solid border p-4 h-[90%]"
+        >
           {/* 1er */}
           <div>
-            <Select      
+            <Select
               variant="primary"
               label="Nombre"
               name="id"
-              options={paciente?.map((e)=> sendNombre (e)  )}
-              
+              options={paciente?.map((e) => sendNombre(e))}
               register={register}
             />
           </div>
           {/* 2do */}
-          <div className="h-96 overflow-y-scroll w-full content-center justify-self-center grid grid-cols-1 gap-10 2xl:gap-6 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 place-self-center place-items-center px-10 pt-[30rem] lg:pt-60">
-            {paciente?.map((e)=> (
-              <RegisterCard registro= {e.estado} />   
+          <div className="h-96 overflow-y-scroll w-full content-center justify-self-center grid grid-cols-1 gap-10 2xl:gap-6 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 place-self-center place-items-center px-10 pt-0">
+            {paciente?.map((e) => (
+              <RegisterCard registro={e.estado} />
             ))}
-                
-           
-
+            <RegisterCard registro={true}></RegisterCard>
           </div>
           {/* 3ero */}
           <div className="flex justify-center py-3">
-            <NavButton
-              variant="secondary"
-              onClick={() => navigate("/main")}
-            >
+            <NavButton variant="secondary" onClick={() => navigate("/main")}>
               Volver
             </NavButton>
           </div>

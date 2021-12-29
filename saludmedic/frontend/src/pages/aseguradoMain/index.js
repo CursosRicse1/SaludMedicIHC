@@ -12,7 +12,7 @@ export default function AseguradoMain() {
   let navigate = useNavigate();
   const [especial1, setNombre] = useState([]);
   const [especial2, setNombre2] = useState([]);
- 
+
   Axios.get("http://localhost:5000/especialista")
     .then((response) => {
       setNombre(response.data);
@@ -23,14 +23,10 @@ export default function AseguradoMain() {
   Axios.get("http://localhost:5000/especialidad")
     .then((response) => {
       setNombre2(response.data);
-      
     })
     .catch((err) => {
       console.log(err);
     });
-
-    
-
 
   return (
     <main className="flex flex-col items-center justify-center h-auto mt-10 md:mt-24">
@@ -80,13 +76,15 @@ export default function AseguradoMain() {
         <div>
           <SpecialistTable>
             {especial1.map((e) => (
-              <Row especialista = {e.nombre} 
-              
-              especialidad = "Doctor"
-              limite = {e.limite}>  </Row>
+              <Row
+                especialista={e.nombre}
+                especialidad="Doctor"
+                limite={e.limite}
+              >
+                {" "}
+              </Row>
             ))}
           </SpecialistTable>
-       
         </div>
       </div>
     </main>
