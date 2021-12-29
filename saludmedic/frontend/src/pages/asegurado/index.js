@@ -21,9 +21,12 @@ export default function AseguradoScreen() {
 
   const registerCita = (data) => {
     window.alert("enviado");
+
+    navigate("/asegurado-main");
+
     console.log(data);
     Axios.post(`${Url}/asegurado/registarFamiliar`, {
-      codigo: codigo,
+      maca: codigo,
       nombres: data.nombres,
       apellidos: data.apellidos,
       dni: data.dni,
@@ -110,13 +113,7 @@ export default function AseguradoScreen() {
             </div>
           </div>
           <div className="flex justify-center space-x-3 my-4">
-            <NavButton
-              variant="primary"
-              type="submit"
-              onClick={() => {
-                navigate("/asegurado-main");
-              }}
-            >
+            <NavButton variant="primary" type="submit">
               Registrar
             </NavButton>
             <NavButton

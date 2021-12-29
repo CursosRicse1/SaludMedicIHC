@@ -8,13 +8,11 @@ import "react-calendar/dist/Calendar.css";
 import Axios from "axios";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-require('dotenv').config();
-
-
+require("dotenv").config();
 
 export default function Atencion() {
-  let Url = process.env.REACT_PORT || 'http://34.74.224.156:5000';
- 
+  let Url = process.env.REACT_PORT || "http://34.74.224.156:5000";
+
   const { register, handleSubmit } = useForm();
   let navigate = useNavigate();
   const [combo, setCombo] = useState([]);
@@ -39,6 +37,7 @@ export default function Atencion() {
   const registerCita = (data) => {
     window.alert("enviado");
     console.log(data);
+    navigate("/asegurado-main");
     Axios.post(`${Url}/asegurado/cita`, {
       nombre: data.nombre,
       especialidad: data.especialidad,
@@ -116,7 +115,12 @@ export default function Atencion() {
               />
             </div>
             <div className="w-full flex flex-row justify-center space-x-6 py-3 ">
-              <Button variant="primary" register={register} type="submit" onClick= {()=>{ navigate('/asegurado-main') }}>
+              <Button
+                variant="primary"
+                register={register}
+                type="submit"
+                onClick={() => {}}
+              >
                 Reservar
               </Button>
               <Button

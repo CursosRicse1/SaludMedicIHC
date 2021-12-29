@@ -8,14 +8,15 @@ import { useForm } from "react-hook-form";
 import Select from "components/Select";
 import Axios from "axios";
 export default function DefuncionScreen() {
-
-  let Url = process.env.REACT_PORT || 'http://34.74.224.156:5000';
+  let Url = process.env.REACT_PORT || "http://34.74.224.156:5000";
 
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const registerDifunto = (data) => {
     window.alert("enviado");
+  
     console.log(data);
+    navigate('/doctor-main')
     Axios.post(`${Url}/doctor/difunto`, {
       nombre: data.nombre,
       codigo: data.codigo,
@@ -105,7 +106,7 @@ export default function DefuncionScreen() {
             />
           </div>
           <div className="w-full flex flex-row justify-center space-x-6 col-span-4">
-            <NavButton variant="primary" type="submit" onClick = {()=> {navigate('/doctor-main')}}>
+            <NavButton variant="primary" type="submit" onClick={() => {}}>
               Enviar
             </NavButton>
             <NavButton
