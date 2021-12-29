@@ -84,12 +84,14 @@ app.get("/api/sendCamas", async (req, res) => {
     console.log(err);
   }
 });
+
 //LOGING
 app.post("/auth/login", async (req, res) => {
-  let reqBody = req.body;
-  const codigo = reqBody.codigo;
-  const password = reqBody.password;
   try {
+    let reqBody = req.body;
+    const codigo = reqBody.codigo;
+    const password = reqBody.password;
+
     return await db.query(
       "SELECT * FROM prueba WHERE  codigo = ?",
       codigo,

@@ -52,7 +52,6 @@ export default function SigninScreen() {
         if (response.status >= 400) {
           throw new Error("error en el server");
         }
-        return response.json();
       })
       .then(function (data) {
         if (data.loggedIn === "true") {
