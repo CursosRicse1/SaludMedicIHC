@@ -49,7 +49,7 @@ export default function RegistarPacienteScreen() {
             <Mask className="text-green-500 fill-current" />
           </i>
           <span className="pl-2 text-xl font-bold text-left">
-            Registrar pacientes
+            Pacientes Atendidos
           </span>
         </div>
         <form
