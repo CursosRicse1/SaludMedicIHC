@@ -33,6 +33,8 @@ export default function AseguradoScreen() {
     }).then((response) => {
       window.alert("Enviado correctamente");
     });
+
+    navigate("/asegurado-main");
   };
   return (
     <main className="flex flex-col items-center justify-center h-auto mt-10 md:mt-16">
@@ -116,7 +118,7 @@ export default function AseguradoScreen() {
               variant="secondary"
               type="submit"
               onClick={() => {
-                navigate("/main");
+                navigate("/asegurado-main");
               }}
             >
               Volver

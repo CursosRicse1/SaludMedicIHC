@@ -24,6 +24,8 @@ export default function DefuncionScreen() {
     }).then(() => {
       window.alert("Enviado correctamente");
     });
+
+    navigate("/doctor-main");
   };
   return (
     <main className="flex flex-col items-center justify-center h-auto mt-10 md:mt-24">
@@ -105,13 +107,7 @@ export default function DefuncionScreen() {
             <NavButton variant="primary" type="submit">
               Enviar
             </NavButton>
-            <NavButton
-              variant="secondary"
-              type="submit"
-              onClick={() => {
-                navigate("/main");
-              }}
-            >
+            <NavButton variant="secondary" type="submit">
               Volver
             </NavButton>
           </div>

@@ -42,6 +42,8 @@ export default function Atencion() {
     }).then(() => {
       window.alert("Enviado correctamente");
     });
+
+    navigate("/asegurado-main");
   };
 
   function prueba(a) {
@@ -117,7 +119,7 @@ export default function Atencion() {
               <Button
                 variant="secondary"
                 onClick={() => {
-                  navigate("/main");
+                  navigate("/asegurado-main");
                 }}
               >
                 Volver
